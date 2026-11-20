@@ -49,6 +49,6 @@ Lo que pide `Req.md` §10 como entregable, con su estado actual:
 | Descripción de la metodología de desarrollo | [ ] | por crear (puede ir en el reporte) |
 | Guía de despliegue | [~] — reescrita para Windows + Tailscale Funnel (20 nov); falta completar su comprobación final en la PC del compañero | `DESPLIEGUE.md`, `deploy/` |
 | Manual de usuario (alumno, docente, administrador) | [x] — 21 páginas, 15 capturas reales con datos de ejemplo (20 nov); faltan los logotipos de la portada | `docs/Manual_de_Usuario.docx` |
-| Resultados de pruebas, incluida la de carga | [ ] — depende de la Fase 9 de `PLAN_DESARROLLO.md` | por crear |
+| Resultados de pruebas, incluida la de carga | [~] — 11 páginas (20 nov): resumen, entorno, 47 pruebas automáticas, casos de uso, seguridad, tolerancia, tres escenarios de carga, navegador, pendientes con formato de registro y hallazgos. Falta: tabla de tiempos de la corrida aprobada en Tailscale y resultados de celulares | `docs/Resultados_de_Pruebas.docx` |
 | `README.md` con instalación local y despliegue | [ ] | por crear |
 | Presentación y plan de contingencia local | [ ] | por crear |
