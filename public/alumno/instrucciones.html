@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Antes de comenzar · Plataforma de exámenes</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="icon" href="data:,">
+</head>
+<body data-rol="alumno">
+  <main id="contenido" class="container contenedor-angosto py-4 py-md-5">
+    <form class="card" id="form-reglas">
+      <div class="card-body">
+        <h1 class="titulo-pantalla">Antes de comenzar</h1>
+        <p class="text-suave mb-4" id="meta">Cargando…</p>
+        <div class="alert alert-danger d-none" role="alert" id="error-reglas"></div>
+
+        <div class="d-none" id="bloque-reglas">
+          <div class="mb-4 d-none" id="bloque-instrucciones">
+            <h2 class="form-label mb-1">Instrucciones de tu docente</h2>
+            <p class="mb-0" id="instrucciones-docente" style="white-space: pre-line"></p>
+          </div>
+          <ul class="fs-6 lh-lg ps-3 mb-4">
+            <li>Solo tienes <strong>una oportunidad</strong>. No podrás regresar a preguntas anteriores.</li>
+            <li>Si cambias de pestaña o de ventana, el examen se <strong>anula y se bloquea</strong> hasta que lo revise tu docente.</li>
+            <li>Si pasas más de <strong id="umbral"></strong> sin actividad, ocurre lo mismo.</li>
+            <li>Si pierdes la conexión por más de 20 segundos, el examen se considera abandonado.</li>
+            <li>El tiempo lo controla el servidor y empieza a contar al comenzar. Tus respuestas se guardan automáticamente.</li>
+            <li>Se registra tu dirección IP como evidencia.</li>
+            <li>En celular, una llamada o una notificación que abras puede anular el examen: activa el modo «No molestar».</li>
+            <li class="d-none" id="regla-calculadora">En este examen puedes usar la calculadora integrada, que aparece debajo de cada pregunta. No uses la del celular ni otra aplicación: salir de la página anula el examen.</li>
+          </ul>
+          <div class="d-flex gap-2 align-items-center mb-4">
+            <input class="form-check-input check-grande" id="acepto" type="checkbox">
+            <label class="fs-6" for="acepto">He leído y acepto las reglas</label>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-outline-primary" href="/alumno/panel.html">Cancelar</a>
+          <button class="btn btn-primary d-none" id="comenzar" type="submit" disabled>Comenzar examen</button>
+        </div>
+      </div>
+    </form>
+  </main>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/instrucciones.js"></script>
+</body>
+</html>

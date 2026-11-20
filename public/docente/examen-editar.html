@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Examen · Plataforma de exámenes</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="icon" href="data:,">
+</head>
+<body data-rol="docente" data-pagina="panel">
+  <main id="contenido" class="container contenedor-medio py-4 py-md-5">
+    <form id="form-examen" novalidate>
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+        <h1 class="titulo-pantalla mb-0" id="titulo-pagina">Crear examen</h1>
+        <span class="badge rounded-pill estado estado-neutro d-none" id="estado-examen"></span>
+      </div>
+
+      <div class="alert alert-warning d-none" role="status" id="aviso-bloqueado">
+        Al menos un alumno ya inició este examen, así que no se puede modificar. Puedes consultarlo.
+      </div>
+      <div class="alert alert-success d-none" role="status" id="aviso-guardado"></div>
+      <div class="alert alert-danger d-none" role="alert" id="error-examen" tabindex="-1">
+        <p class="mb-1 fw-semibold" id="error-titulo"></p>
+        <ul class="mb-0" id="error-lista"></ul>
+      </div>
+
+      <fieldset id="campos">
+        <section class="card mb-4" aria-labelledby="t-datos">
+          <div class="card-body">
+            <h2 class="titulo-seccion" id="t-datos">Datos y configuración</h2>
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="form-label" for="titulo">Título</label>
+                <input class="form-control" id="titulo" name="titulo" type="text" maxlength="150" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="instrucciones">Instrucciones para el alumno (opcional)</label>
+                <textarea class="form-control" id="instrucciones" name="instrucciones" rows="3" maxlength="5000"></textarea>
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="abre">Abre</label>
+                <input class="form-control" id="abre" name="abre_en" type="datetime-local">
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="cierra">Cierra</label>
+                <input class="form-control" id="cierra" name="cierra_en" type="datetime-local" aria-describedby="ventana-ayuda">
+              </div>
+              <div class="col-12 form-text mt-1" id="ventana-ayuda">La ventana puede abarcar varios días; el alumno lo presenta una sola vez dentro de ella.</div>
+              <div class="col-sm-6">
+                <label class="form-label" for="duracion">Duración (minutos)</label>
+                <input class="form-control" id="duracion" name="duracion_min" type="number" min="1" max="600" step="1">
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="inactividad">Inactividad que anula el examen (minutos)</label>
+                <input class="form-control" id="inactividad" name="umbral_inactividad_min" type="number" min="1" max="60" step="1" value="3">
+              </div>
+              <div class="col-12">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" id="mostrar" name="mostrar_respuestas" type="checkbox" role="switch">
+                  <label class="form-check-label" for="mostrar">Mostrar respuestas correctas y comentarios al publicar resultados</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" id="herramienta" name="permite_herramienta" type="checkbox" role="switch">
+                  <label class="form-check-label" for="herramienta">Permitir calculadora integrada (excepción)</label>
+                </div>
+              </div>
+              <fieldset class="col-12">
+                <legend class="form-label">Asignar a grupos</legend>
+                <div class="d-flex flex-wrap gap-3" id="lista-grupos"><span class="text-suave small">Cargando…</span></div>
+              </fieldset>
+            </div>
+          </div>
+        </section>
+
+        <section class="card mb-4" aria-labelledby="t-preguntas">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2">
+              <h2 class="titulo-seccion" id="t-preguntas">Preguntas</h2>
+              <span class="small text-suave" id="resumen-preguntas" aria-live="polite"></span>
+            </div>
+            <p class="small text-suave">El orden de preguntas y opciones se baraja para cada alumno.</p>
+            <div id="lista-preguntas"></div>
+            <p class="text-suave d-none" id="sin-preguntas">Aún no hay preguntas. Agrega la primera:</p>
+            <div class="d-flex flex-wrap gap-2 bloque-final">
+              <button class="btn btn-outline-primary btn-sm" type="button" data-agregar="OPCION_MULTIPLE">+ Opción múltiple</button>
+              <button class="btn btn-outline-primary btn-sm" type="button" data-agregar="VERDADERO_FALSO">+ Verdadero / falso</button>
+              <button class="btn btn-outline-primary btn-sm" type="button" data-agregar="ABIERTA">+ Abierta</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="card mb-4" aria-labelledby="t-extra">
+          <div class="card-body">
+            <h2 class="titulo-seccion" id="t-extra">Tiempo extra por alumno</h2>
+            <p class="small text-suave">Solo para alumnos inscritos en los grupos marcados arriba.</p>
+            <div class="row g-3 align-items-end">
+              <div class="col-sm-6">
+                <label class="form-label" for="extra-alumno">Alumno</label>
+                <select class="form-select" id="extra-alumno"><option value="">Marca primero un grupo</option></select>
+              </div>
+              <div class="col-sm-3">
+                <label class="form-label" for="extra-min">Minutos extra</label>
+                <input class="form-control" id="extra-min" type="number" min="1" max="240" step="1" value="15">
+              </div>
+              <div class="col-sm-3"><button class="btn btn-outline-primary w-100" type="button" id="extra-agregar">Agregar</button></div>
+            </div>
+            <ul class="list-group list-group-flush mt-3" id="lista-extra"></ul>
+          </div>
+        </section>
+      </fieldset>
+
+      <div class="d-flex flex-wrap justify-content-end gap-2">
+        <a class="btn btn-outline-primary me-auto" href="/docente/panel.html">Volver al panel</a>
+        <button class="btn btn-outline-primary" type="submit" data-programar="false">Guardar borrador</button>
+        <button class="btn btn-primary" type="submit" data-programar="true">Programar examen</button>
+      </div>
+    </form>
+  </main>
+
+  <template id="tpl-pregunta">
+    <div class="bloque pregunta">
+      <div class="d-flex justify-content-between align-items-center mb-2 gap-2">
+        <strong class="pregunta-titulo"></strong>
+        <button class="btn btn-outline-primary btn-sm pregunta-quitar" type="button">Quitar</button>
+      </div>
+      <label class="form-label campo-enunciado-label">Enunciado</label>
+      <textarea class="form-control mb-3 campo-enunciado" rows="2" maxlength="5000"></textarea>
+      <div class="row g-3 mb-3">
+        <div class="col-sm-8">
+          <label class="form-label campo-imagen-label">Imagen (opcional, PNG o JPG de hasta 2 MB)</label>
+          <input class="form-control campo-imagen" type="file" accept="image/png,image/jpeg">
+          <div class="imagen-vista d-none mt-2">
+            <!-- la <img> se crea al mostrar la imagen -->
+            <button class="btn btn-link btn-sm px-0 imagen-quitar" type="button">Quitar imagen</button>
+          </div>
+          <div class="text-danger small mt-1 imagen-error" role="alert"></div>
+        </div>
+        <div class="col-sm-4">
+          <label class="form-label campo-puntos-label">Puntos</label>
+          <input class="form-control campo-puntos" type="number" min="0" max="100" step="0.5" value="1">
+        </div>
+      </div>
+      <fieldset data-solo="OPCION_MULTIPLE">
+        <legend class="form-label">Opciones (marca la correcta)</legend>
+        <div class="d-flex flex-column gap-2 lista-opciones"></div>
+        <button class="btn btn-link px-0 mt-1 opcion-agregar" type="button">+ Agregar opción</button>
+      </fieldset>
+      <fieldset data-solo="VERDADERO_FALSO">
+        <legend class="form-label">Respuesta correcta</legend>
+        <div class="form-check form-check-inline"><input class="form-check-input vf-verdadero" type="radio"><label class="form-check-label vf-verdadero-label">Verdadero</label></div>
+        <div class="form-check form-check-inline"><input class="form-check-input vf-falso" type="radio"><label class="form-check-label vf-falso-label">Falso</label></div>
+      </fieldset>
+      <p class="small text-suave mb-0" data-solo="ABIERTA">Se califica manualmente después del examen.</p>
+    </div>
+  </template>
+
+  <template id="tpl-opcion">
+    <div class="input-group opcion">
+      <span class="input-group-text"><input class="form-check-input mt-0 opcion-correcta" type="radio"></span>
+      <input class="form-control opcion-texto" type="text" maxlength="1000">
+      <button class="btn btn-outline-primary opcion-quitar" type="button">Quitar</button>
+    </div>
+  </template>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/examen-editar.js"></script>
+</body>
+</html>

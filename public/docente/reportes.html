@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reportes · Plataforma de exámenes</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="icon" href="data:,">
+</head>
+<body data-rol="docente" data-pagina="reportes">
+  <main id="contenido" class="container contenedor-ancho py-4 py-md-5">
+    <h1 class="titulo-pantalla mb-4">Reportes</h1>
+
+    <section class="card mb-4">
+      <div class="card-body">
+        <form class="row g-3 align-items-end" id="form-reporte">
+          <div class="col-md">
+            <label class="form-label" for="examen">Examen</label>
+            <select class="form-select" id="examen" name="examen_id" disabled><option>Cargando…</option></select>
+          </div>
+          <div class="col-md-auto d-flex flex-wrap gap-2">
+            <a class="btn btn-outline-primary disabled" id="excel" aria-disabled="true">Exportar a Excel</a>
+            <a class="btn btn-outline-primary disabled" id="pdf" aria-disabled="true">Exportar a PDF</a>
+          </div>
+        </form>
+        <div class="alert alert-danger d-none mt-3 mb-0" role="alert" id="error"></div>
+      </div>
+    </section>
+
+    <section class="card d-none" id="reporte" aria-label="Reporte del examen">
+      <div class="card-body">
+        <ul class="nav nav-tabs mb-3" role="tablist">
+          <li class="nav-item" role="presentation"><button class="nav-link active" id="tab-cal" data-bs-toggle="tab" data-bs-target="#panel-cal" type="button" role="tab" aria-controls="panel-cal" aria-selected="true">Calificaciones</button></li>
+          <li class="nav-item" role="presentation"><button class="nav-link" id="tab-inc" data-bs-toggle="tab" data-bs-target="#panel-inc" type="button" role="tab" aria-controls="panel-inc" aria-selected="false">Incidentes</button></li>
+          <li class="nav-item" role="presentation"><button class="nav-link" id="tab-est" data-bs-toggle="tab" data-bs-target="#panel-est" type="button" role="tab" aria-controls="panel-est" aria-selected="false">Estadísticas</button></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="panel-cal" role="tabpanel" aria-labelledby="tab-cal" tabindex="0">
+            <div class="table-responsive">
+              <table class="table tabla-apilada">
+                <thead><tr><th scope="col">Alumno</th><th scope="col">Grupo</th><th scope="col">Estado</th><th scope="col">Calificación</th><th scope="col">Publicado</th></tr></thead>
+                <tbody id="tabla-cal"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="panel-inc" role="tabpanel" aria-labelledby="tab-inc" tabindex="0">
+            <p class="small text-suave">La evidencia de cada incidente se borra a los 7 días; la calificación y el estado del examen se conservan.</p>
+            <div class="table-responsive">
+              <table class="table tabla-apilada">
+                <thead><tr><th scope="col">Alumno</th><th scope="col">Tipo</th><th scope="col">Fecha y hora</th><th scope="col">IP</th><th scope="col">Dispositivo</th><th scope="col">Decisión</th></tr></thead>
+                <tbody id="tabla-inc"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="panel-est" role="tabpanel" aria-labelledby="tab-est" tabindex="0">
+            <div class="row g-3 mb-4">
+              <div class="col-6 col-md-3"><div class="dato-etiqueta">Promedio</div><div class="dato-valor" id="est-promedio"></div></div>
+              <div class="col-6 col-md-3"><div class="dato-etiqueta">Aprobados</div><div class="dato-valor" id="est-aprobados"></div></div>
+              <div class="col-6 col-md-3"><div class="dato-etiqueta">Máx. / mín.</div><div class="dato-valor" id="est-extremos"></div></div>
+              <div class="col-6 col-md-3"><div class="dato-etiqueta">Incidentes</div><div class="dato-valor" id="est-incidentes"></div></div>
+            </div>
+            <p class="small text-suave" id="est-nota"></p>
+            <h2 class="titulo-seccion">Distribución de calificaciones</h2>
+            <div class="table-responsive">
+              <table class="table">
+                <thead><tr><th scope="col">Rango</th><th scope="col">Alumnos</th><th scope="col" class="w-50">Proporción</th></tr></thead>
+                <tbody id="tabla-dist"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/reportes.js"></script>
+</body>
+</html>

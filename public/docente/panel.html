@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel del docente · Plataforma de exámenes</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="icon" href="data:,">
+</head>
+<body data-rol="docente" data-pagina="panel">
+  <main id="contenido" class="container contenedor-ancho py-4 py-md-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+      <h1 class="titulo-pantalla mb-0">Panel del docente</h1>
+      <a class="btn btn-primary" href="/docente/examen-editar.html">Nuevo examen</a>
+    </div>
+
+    <div class="row g-4 mb-4">
+      <div class="col-lg-4">
+        <section class="card h-100" aria-labelledby="t-nueva-materia">
+          <div class="card-body">
+            <div class="bloque">
+              <h2 class="titulo-seccion" id="t-nueva-materia">Nueva materia</h2>
+              <form id="form-materia">
+                <div class="alert alert-danger d-none" role="alert" id="error-materia"></div>
+                <label class="form-label" for="materia-nombre">Nombre de la materia</label>
+                <input class="form-control mb-3" id="materia-nombre" name="nombre" type="text" maxlength="120" required>
+                <button class="btn btn-outline-primary" type="submit">Crear materia</button>
+              </form>
+            </div>
+            <div class="bloque">
+              <h2 class="titulo-seccion" id="t-nuevo-grupo">Nuevo grupo</h2>
+              <form id="form-grupo" aria-labelledby="t-nuevo-grupo">
+                <div class="alert alert-danger d-none" role="alert" id="error-grupo"></div>
+                <label class="form-label" for="grupo-materia">Materia</label>
+                <select class="form-select mb-3" id="grupo-materia" name="materia_id" required disabled>
+                  <option value="">Primero crea una materia</option>
+                </select>
+                <label class="form-label" for="grupo-nombre">Nombre del grupo</label>
+                <input class="form-control mb-3" id="grupo-nombre" name="nombre" type="text" maxlength="80" placeholder="Por ejemplo: 3A" required>
+                <button class="btn btn-outline-primary" type="submit">Crear grupo y código</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="col-lg-8">
+        <section class="card h-100" aria-labelledby="t-grupos">
+          <div class="card-body">
+            <h2 class="titulo-seccion" id="t-grupos">Mis materias y grupos</h2>
+            <p class="small text-suave">Comparte el código con tus alumnos para que se inscriban. Un grupo inactivo ya no acepta inscripciones.</p>
+            <div class="alert alert-danger d-none" role="alert" id="error-grupos"></div>
+            <div class="visually-hidden" role="status" id="aviso-grupos"></div>
+            <div class="table-responsive">
+              <table class="table tabla-apilada">
+                <thead><tr><th scope="col">Materia</th><th scope="col">Grupo</th><th scope="col">Código</th><th scope="col">Alumnos</th><th scope="col">Estado</th><th scope="col">Acciones</th></tr></thead>
+                <tbody id="tabla-grupos"><tr><td colspan="6" class="text-suave">Cargando…</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="card" aria-labelledby="t-mis-examenes">
+      <div class="card-body">
+        <h2 class="titulo-seccion" id="t-mis-examenes">Mis exámenes</h2>
+        <div class="alert alert-success d-none" role="status" id="aviso-examenes"></div>
+        <div class="alert alert-danger d-none" role="alert" id="error-examenes"></div>
+        <div class="table-responsive">
+          <table class="table tabla-apilada">
+            <thead><tr><th scope="col">Examen</th><th scope="col">Ventana</th><th scope="col">Grupos</th><th scope="col">Estado</th><th scope="col">Acciones</th></tr></thead>
+            <tbody id="tabla-examenes"><tr><td colspan="5" class="text-suave">Cargando…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal fade" id="modal-alumnos" tabindex="-1" aria-labelledby="t-alumnos" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-body p-4">
+          <h2 class="titulo-seccion" id="t-alumnos">Alumnos inscritos</h2>
+          <ul class="list-group list-group-flush mb-3" id="lista-alumnos"></ul>
+          <div class="d-flex justify-content-end"><button class="btn btn-primary" type="button" data-bs-dismiss="modal">Cerrar</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/docente.js"></script>
+</body>
+</html>

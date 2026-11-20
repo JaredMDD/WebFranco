@@ -1,0 +1,29 @@
+{
+  "name": "webfranco",
+  "version": "0.1.0",
+  "description": "Plataforma web para la aplicación segura de exámenes asíncronos (Tecnológico de Cuautla, TecNM)",
+  "private": true,
+  "type": "module",
+  "main": "server/app.js",
+  "engines": {
+    "node": ">=24.2"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server/app.js",
+    "dev": "node --watch --env-file-if-exists=.env server/app.js",
+    "db:migrar": "node --env-file-if-exists=.env server/db/migrar.js",
+    "test": "node --env-file-if-exists=.env --test \"test/**/*.test.js\"",
+    "carga": "node --env-file-if-exists=.env test/carga.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "exceljs": "^4.4.0",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.5",
+    "helmet": "^8.3.0",
+    "multer": "^2.5.0",
+    "pdfkit": "^0.20.2",
+    "pg": "^8.23.1",
+    "socket.io": "^4.8.4"
+  }
+}

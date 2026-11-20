@@ -1,0 +1,8 @@
+node_modules/
+.env
+server/uploads/
+.DS_Store
+.idea/workspace.xml
+.impeccable/hook.cache.json
+.impeccable/config.local.json
+logs/

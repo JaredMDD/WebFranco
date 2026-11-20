@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Examen en curso · Plataforma de exámenes</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="icon" href="data:,">
+</head>
+<body data-rol="alumno" data-sin-menu>
+  <main id="contenido" class="sin-impresion d-flex flex-column">
+    <div class="barra-examen sticky-top d-none" id="barra">
+      <div class="container examen-contenedor d-flex justify-content-between align-items-center px-3 py-3">
+        <span>Pregunta <span id="num-pregunta">–</span> de <span id="total-preguntas">–</span></span>
+        <span class="reloj" role="timer" aria-label="Tiempo restante" id="reloj">--:--</span>
+      </div>
+    </div>
+    <div class="visually-hidden" aria-live="assertive" id="aviso-tiempo"></div>
+    <!-- Conexión perdida o inactividad a punto de anular el examen (RF-27, RF-31) -->
+    <div class="container examen-contenedor px-3 pt-3 d-none" id="alerta-vigilancia">
+      <div class="alert alert-warning mb-0" role="alert" id="alerta-vigilancia-texto"></div>
+    </div>
+
+    <div class="container examen-contenedor px-3 py-4" id="cargando"><p class="text-suave">Cargando tu examen…</p></div>
+    <div class="container examen-contenedor px-3 py-4 d-none" id="fallo">
+      <div class="alert alert-danger" role="alert" id="fallo-texto"></div>
+      <a class="btn btn-primary" href="/alumno/panel.html">Volver a mis exámenes</a>
+    </div>
+
+    <form class="container examen-contenedor flex-grow-1 px-3 py-4 d-flex flex-column gap-3 d-none" id="form-pregunta">
+      <div class="progress" role="progressbar" aria-label="Avance del examen" aria-valuemin="0" aria-valuemax="100" id="progreso">
+        <div class="progress-bar" id="progreso-barra"></div>
+      </div>
+      <!-- Sin botón "Anterior": las preguntas son secuenciales (RF-23) -->
+      <fieldset class="d-flex flex-column gap-3">
+        <legend class="examen-enunciado mb-1" id="enunciado" tabindex="-1" style="white-space: pre-line"></legend>
+        <div id="imagen"></div>
+        <div class="d-flex flex-column gap-3" id="opciones"></div>
+        <div class="d-none" id="bloque-abierta">
+          <label class="form-label" for="respuesta-abierta">Tu respuesta</label>
+          <textarea class="form-control" id="respuesta-abierta" rows="8" maxlength="10000"></textarea>
+        </div>
+      </fieldset>
+      <div class="texto-guardado" role="status" id="estado-guardado"></div>
+    </form>
+
+    <!-- Calculadora integrada, solo si el docente la permite (RF-18). Fuera del formulario: Enter calcula, no envía. -->
+    <section class="container examen-contenedor px-3 pb-3 d-none" id="calculadora" aria-label="Calculadora">
+      <details class="card">
+        <summary class="card-body py-3 fw-semibold">Calculadora</summary>
+        <div class="card-body pt-0 d-flex flex-column gap-2">
+          <input class="form-control calculadora-entrada" id="calc-entrada" type="text" inputmode="none" autocomplete="off" aria-label="Operación">
+          <output class="small text-suave calculadora-resultado" id="calc-resultado" aria-live="polite"></output>
+          <div class="calculadora-teclas" id="calc-teclas">
+            <button class="btn btn-outline-primary" type="button" data-tecla="C" aria-label="Borrar todo">C</button>
+            <button class="btn btn-outline-primary" type="button" data-tecla="(">(</button>
+            <button class="btn btn-outline-primary" type="button" data-tecla=")">)</button>
+            <button class="btn btn-outline-primary" type="button" data-tecla="÷" aria-label="Dividir">÷</button>
+            <button class="btn btn-light" type="button" data-tecla="7">7</button>
+            <button class="btn btn-light" type="button" data-tecla="8">8</button>
+            <button class="btn btn-light" type="button" data-tecla="9">9</button>
+            <button class="btn btn-outline-primary" type="button" data-tecla="×" aria-label="Multiplicar">×</button>
+            <button class="btn btn-light" type="button" data-tecla="4">4</button>
+            <button class="btn btn-light" type="button" data-tecla="5">5</button>
+            <button class="btn btn-light" type="button" data-tecla="6">6</button>
+            <button class="btn btn-outline-primary" type="button" data-tecla="−" aria-label="Restar">−</button>
+            <button class="btn btn-light" type="button" data-tecla="1">1</button>
+            <button class="btn btn-light" type="button" data-tecla="2">2</button>
+            <button class="btn btn-light" type="button" data-tecla="3">3</button>
+            <button class="btn btn-outline-primary" type="button" data-tecla="+" aria-label="Sumar">+</button>
+            <button class="btn btn-light" type="button" data-tecla="0">0</button>
+            <button class="btn btn-light" type="button" data-tecla="." aria-label="Punto decimal">.</button>
+            <button class="btn btn-outline-primary" type="button" data-tecla="⌫" aria-label="Borrar último">⌫</button>
+            <button class="btn btn-primary" type="button" data-tecla="=" aria-label="Calcular">=</button>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <div class="examen-pie sticky-bottom d-none" id="pie">
+      <div class="container examen-contenedor px-3 py-3">
+        <p class="small text-suave mb-2">No cambies de pestaña: el examen se anulará. No podrás regresar a esta pregunta.</p>
+        <button class="btn btn-primary w-100" type="submit" form="form-pregunta" id="avanzar">Guardar y continuar</button>
+      </div>
+    </div>
+
+    <section class="container examen-contenedor px-3 py-4 d-none" id="fin" aria-labelledby="t-fin">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="titulo-pantalla" id="t-fin" tabindex="-1">Examen enviado</h1>
+          <p id="fin-texto">Tus respuestas quedaron guardadas. Verás tu calificación cuando tu docente la publique.</p>
+          <a class="btn btn-primary" href="/alumno/panel.html">Volver a mis exámenes</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Aviso de tiempo agotado (RF-26) -->
+  <div class="modal fade" id="modal-tiempo" tabindex="-1" aria-labelledby="t-tiempo" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body p-4">
+          <h2 class="titulo-seccion" id="t-tiempo">Se agotó el tiempo</h2>
+          <p class="mb-4">Tu examen se cerró y se guardó todo lo que respondiste.</p>
+          <a class="btn btn-primary" href="/alumno/panel.html">Volver a mis exámenes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/socket.io/socket.io.min.js"></script>
+  <script src="/js/calculadora.js"></script>
+  <script src="/js/examen.js"></script>
+</body>
+</html>

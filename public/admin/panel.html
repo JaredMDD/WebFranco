@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel del administrador · Plataforma de exámenes</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="icon" href="data:,">
+</head>
+<body data-rol="admin" data-pagina="panel">
+  <main id="contenido" class="container contenedor-ancho py-4 py-md-5">
+    <h1 class="titulo-pantalla mb-4">Panel del administrador</h1>
+
+    <section class="mb-4" aria-labelledby="t-estado">
+      <h2 class="visually-hidden" id="t-estado">Estado del sistema</h2>
+      <div class="row g-3">
+        <div class="col-6 col-md-3"><div class="card"><div class="card-body py-3"><div class="dato-etiqueta">Servidor</div><div class="fw-bold" id="estado-servidor">…</div></div></div></div>
+        <div class="col-6 col-md-3"><div class="card"><div class="card-body py-3"><div class="dato-etiqueta">Base de datos</div><div class="fw-bold" id="estado-db">…</div></div></div></div>
+        <div class="col-6 col-md-3"><div class="card"><div class="card-body py-3"><div class="dato-etiqueta">Alumnos presentando</div><div class="fw-bold" id="estado-intentos">…</div></div></div></div>
+        <div class="col-6 col-md-3"><div class="card"><div class="card-body py-3"><div class="dato-etiqueta">Incidentes pendientes</div><div class="fw-bold" id="estado-incidentes">…</div></div></div></div>
+      </div>
+    </section>
+
+    <div class="row g-4 mb-4">
+      <div class="col-lg-4">
+        <section class="card h-100" aria-labelledby="t-crear">
+          <div class="card-body">
+            <div class="bloque">
+              <h2 class="titulo-seccion" id="t-crear">Crear cuenta de docente</h2>
+              <form id="form-docente">
+                <div class="alert alert-danger d-none" role="alert" id="error-docente"></div>
+                <label class="form-label" for="doc-usuario">Usuario</label>
+                <input class="form-control mb-2" id="doc-usuario" name="usuario" type="text" minlength="3" maxlength="50" autocomplete="off" required>
+                <p class="small text-suave">Se genera una contraseña inicial que deberás entregar al docente.</p>
+                <button class="btn btn-primary" type="submit">Crear docente</button>
+              </form>
+            </div>
+            <div class="bloque">
+              <h2 class="titulo-seccion" id="t-restablecer">Restablecer contraseña</h2>
+              <form id="form-restablecer" aria-labelledby="t-restablecer">
+                <div class="alert alert-danger d-none" role="alert" id="error-restablecer"></div>
+                <label class="form-label" for="res-usuario">Usuario del docente o alumno</label>
+                <input class="form-control mb-2" id="res-usuario" name="usuario" type="text" maxlength="50" autocomplete="off" required>
+                <p class="small text-suave">La contraseña anterior deja de funcionar y se cierran sus sesiones.</p>
+                <button class="btn btn-outline-primary" type="submit">Restablecer</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="col-lg-8">
+        <section class="card h-100" aria-labelledby="t-docentes">
+          <div class="card-body">
+            <h2 class="titulo-seccion" id="t-docentes">Docentes</h2>
+            <div class="alert alert-danger d-none" role="alert" id="error-docentes"></div>
+            <div class="table-responsive">
+              <table class="table tabla-apilada">
+                <thead><tr><th scope="col">Usuario</th><th scope="col">Alta</th><th scope="col">Estado</th><th scope="col">Acciones</th></tr></thead>
+                <tbody id="tabla-docentes"><tr><td colspan="4" class="text-suave">Cargando…</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="card" aria-labelledby="t-incidentes">
+      <div class="card-body">
+        <h2 class="titulo-seccion" id="t-incidentes">Incidentes recientes</h2>
+        <div class="table-responsive">
+          <table class="table">
+            <thead><tr><th scope="col">Fecha y hora</th><th scope="col">Alumno</th><th scope="col">Examen</th><th scope="col">Docente</th><th scope="col">Tipo</th><th scope="col">Decisión</th></tr></thead>
+            <tbody id="tabla-incidentes"><tr><td colspan="6" class="text-suave">Cargando…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Credencial generada: se muestra una sola vez -->
+  <div class="modal fade" id="modal-credencial" tabindex="-1" aria-labelledby="t-credencial" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body p-4">
+          <h2 class="titulo-seccion" id="t-credencial">Contraseña generada</h2>
+          <p id="credencial-texto"></p>
+          <dl class="row mb-3">
+            <dt class="col-4">Usuario</dt><dd class="col-8"><code class="fs-6" id="credencial-usuario"></code></dd>
+            <dt class="col-4">Contraseña</dt><dd class="col-8"><code class="fs-6" id="credencial-contrasena"></code></dd>
+          </dl>
+          <p class="small text-suave">Cópiala ahora: no se volverá a mostrar.</p>
+          <div class="d-flex justify-content-end"><button class="btn btn-primary" type="button" data-bs-dismiss="modal">Listo</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

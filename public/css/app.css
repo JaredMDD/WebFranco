@@ -1,0 +1,227 @@
+/* Identidad provisional TecNM / Tecnológico de Cuautla (RNF-19, RNF-22).
+   Cambiar la paleta SOLO aquí: el resto de la interfaz usa estas variables. */
+:root {
+  --color-primario: #1F3A6E;
+  --color-primario-rgb: 31, 58, 110;
+  --color-primario-hover: #172C54;
+  --color-primario-activo: #122343;
+  --color-fondo: #F4F6FA;
+  --color-tarjeta: #FFFFFF;
+  --color-texto: #1A1A1A;
+  --color-texto-suave: #4A5160;
+  --color-borde: #8A92A3;
+  --color-linea: #D5D9E2;
+  --color-aviso: #F2C14E;
+  --color-aviso-rgb: 242, 193, 78;
+  --color-exito: #1E6B3C;
+  --color-exito-rgb: 30, 107, 60;
+
+  /* Bootstrap toma la paleta de aquí */
+  --bs-primary: var(--color-primario);
+  --bs-primary-rgb: var(--color-primario-rgb);
+  --bs-success: var(--color-exito);
+  --bs-success-rgb: var(--color-exito-rgb);
+  --bs-warning: var(--color-aviso);
+  --bs-warning-rgb: var(--color-aviso-rgb);
+  --bs-body-font-family: Inter, Arial, sans-serif;
+  --bs-body-color: var(--color-texto);
+  /* --bs-body-bg se queda blanco: Bootstrap lo usa en tarjetas, campos y modales. El gris va solo en body. */
+  --bs-secondary-color: var(--color-texto-suave);
+  --bs-border-color: var(--color-linea);
+  --bs-link-color: var(--color-primario);
+  --bs-link-color-rgb: var(--color-primario-rgb);
+  --bs-link-hover-color: var(--color-primario-hover);
+  --bs-link-hover-color-rgb: 23, 44, 84;
+  --bs-focus-ring-color: rgba(var(--color-primario-rgb), .35);
+  --bs-code-color: var(--color-texto);
+  --anillo-foco: 0 0 0 .25rem rgba(var(--color-primario-rgb), .35);
+}
+
+::selection { background: rgba(var(--color-primario-rgb), .18); color: var(--color-texto); }
+html { accent-color: var(--color-primario); }
+
+body {
+  background: var(--color-fondo);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1 0 auto; }
+
+/* Tipografía: títulos de pantalla 26 px, secciones 20 px */
+.titulo-pantalla { font-size: 1.625rem; font-weight: 700; margin-bottom: .25rem; }
+.titulo-seccion { font-size: 1.25rem; font-weight: 700; margin-bottom: .75rem; }
+
+/* Encabezado institucional (RNF-20) */
+.encabezado { background: var(--color-primario); }
+.logo-placeholder {
+  width: 44px; height: 44px; flex: none;
+  border: 2px dashed #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: #fff;
+}
+/* Al tener el logo oficial: <img class="logo-oficial" src="/img/logo.png" alt="TecNM">, sin deformar (RNF-21) */
+.logo-oficial { height: 44px; width: auto; object-fit: contain; }
+.encabezado .nombre-inst { font-weight: 700; font-size: 18px; line-height: 1.2; }
+.encabezado .sub-inst { font-size: 13px; }
+.encabezado .nav-link { color: rgba(255, 255, 255, .85); }
+.encabezado .nav-link:hover,
+.encabezado .nav-link:focus,
+.encabezado .nav-link.active { color: #fff; }
+.encabezado .nav-link.active { text-decoration: underline; text-underline-offset: 6px; }
+.encabezado .rol { color: #fff; font-size: 14px; }
+@media (min-width: 768px) {
+  .encabezado .rol-separada { border-left: 1px solid rgba(255, 255, 255, .3); padding-left: 1rem; }
+}
+.encabezado .sesion-movil { color: rgba(255, 255, 255, .8); }
+
+.pie { background: var(--color-tarjeta); border-top: 1px solid var(--color-linea); color: var(--color-texto-suave); font-size: 13px; }
+
+/* Botones: radio 8 px, relleno 12×20, negrita 15 px; secundario con borde de 2 px */
+.btn {
+  --bs-btn-padding-y: 12px;
+  --bs-btn-padding-x: 20px;
+  --bs-btn-font-size: 15px;
+  --bs-btn-font-weight: 600;
+  --bs-btn-border-radius: 8px;
+  min-height: 44px; /* área táctil */
+}
+.btn-sm { --bs-btn-padding-y: 8px; --bs-btn-padding-x: 14px; --bs-btn-font-size: 14px; }
+.btn-primary {
+  --bs-btn-bg: var(--color-primario);
+  --bs-btn-border-color: var(--color-primario);
+  --bs-btn-hover-bg: var(--color-primario-hover);
+  --bs-btn-hover-border-color: var(--color-primario-hover);
+  --bs-btn-active-bg: var(--color-primario-activo);
+  --bs-btn-active-border-color: var(--color-primario-activo);
+  --bs-btn-disabled-bg: var(--color-primario);
+  --bs-btn-disabled-border-color: var(--color-primario);
+  --bs-btn-focus-shadow-rgb: var(--color-primario-rgb);
+}
+.btn-outline-primary {
+  --bs-btn-border-width: 2px;
+  --bs-btn-color: var(--color-primario);
+  --bs-btn-bg: #fff;
+  --bs-btn-border-color: var(--color-primario);
+  --bs-btn-hover-bg: var(--color-primario);
+  --bs-btn-hover-border-color: var(--color-primario);
+  --bs-btn-active-bg: var(--color-primario-activo);
+  --bs-btn-active-border-color: var(--color-primario-activo);
+  --bs-btn-disabled-color: var(--color-primario);
+  --bs-btn-disabled-border-color: var(--color-primario);
+  --bs-btn-focus-shadow-rgb: var(--color-primario-rgb);
+}
+.btn-light.btn-encabezado { --bs-btn-color: var(--color-primario); }
+
+/* Tarjetas: radio 12 px, relleno 28 px, sombra suave */
+.card {
+  --bs-card-border-radius: 12px;
+  --bs-card-inner-border-radius: 12px;
+  --bs-card-border-width: 0;
+  --bs-card-spacer-y: 28px;
+  --bs-card-spacer-x: 28px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .12);
+}
+@media (max-width: 575.98px) {
+  .card { --bs-card-spacer-y: 20px; --bs-card-spacer-x: 20px; }
+}
+
+/* Campos: etiqueta visible en negrita encima, borde 1 px, radio 8 px, relleno 12 px */
+.form-label { font-weight: 600; font-size: 14px; }
+.form-control, .form-select {
+  border-color: var(--color-borde);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 15px;
+}
+.input-group-text { border-color: var(--color-borde); border-radius: 8px; background: var(--color-fondo); }
+.form-switch .form-check-input { border-radius: 50rem; }
+.form-control:focus, .form-select:focus, .form-check-input:focus {
+  border-color: var(--color-primario);
+  box-shadow: var(--anillo-foco);
+}
+.form-check-input { border-color: var(--color-borde); }
+/* Interruptor apagado: la perilla por defecto de Bootstrap no llega a 3:1 */
+.form-switch .form-check-input:not(:checked):not(:focus) {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%238A92A3'/%3e%3c/svg%3e");
+}
+.form-check-input:checked { background-color: var(--color-primario); border-color: var(--color-primario); }
+.check-grande { width: 22px; height: 22px; margin-top: 0; flex: none; }
+
+/* Tablas: línea inferior, relleno 12 px, texto 14 px */
+.table { --bs-table-bg: transparent; font-size: 14px; margin-bottom: 0; }
+.table > :not(caption) > * > * { padding: 12px; border-bottom-color: var(--color-linea); vertical-align: middle; }
+.table th { font-weight: 600; color: var(--color-texto-suave); white-space: nowrap; }
+.table td { font-variant-numeric: tabular-nums; }
+
+.list-group {
+  --bs-list-group-active-bg: var(--color-primario);
+  --bs-list-group-active-border-color: var(--color-primario);
+  --bs-list-group-action-hover-bg: rgba(var(--color-primario-rgb), .06);
+}
+
+/* Bloques dentro de una tarjeta: se separan con línea, no con otra caja (sin tarjetas anidadas) */
+.bloque + .bloque { border-top: 1px solid var(--color-linea); margin-top: 24px; padding-top: 24px; }
+.bloque-final { border-top: 1px solid var(--color-linea); margin-top: 24px; padding-top: 24px; }
+
+/* Dato de resumen (estadísticas, estado del sistema) */
+.dato-etiqueta { font-size: 13px; color: var(--color-texto-suave); }
+.dato-valor { font-size: 1.75rem; font-weight: 700; line-height: 1.2; font-variant-numeric: tabular-nums; }
+
+/* Tabla que en celular se apila en bloques, para que la acción principal no quede oculta. Cada <td> lleva data-label. */
+@media (max-width: 575.98px) {
+  .tabla-apilada thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .tabla-apilada tr { display: block; padding: 12px 0; border-bottom: 1px solid var(--color-linea); }
+  .tabla-apilada td { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; padding: 4px 0 !important; border: 0 !important; text-align: right; white-space: normal !important; }
+  .tabla-apilada td::before { content: attr(data-label); color: var(--color-texto-suave); font-weight: 600; text-align: left; }
+  .tabla-apilada td:has(.btn + .btn) { justify-content: flex-end; }
+  .tabla-apilada td:has(.btn + .btn)::before { flex-basis: 100%; }
+  .tabla-apilada td:first-child { font-weight: 700; text-align: left; display: block; }
+  .tabla-apilada td:first-child::before { content: none; }
+  .tabla-apilada td[colspan] { display: block; font-weight: 400; } /* mensajes de tabla vacía o cargando */
+}
+
+/* Etiquetas de estado: píldora con texto (no solo color) */
+.estado { font-size: 13px; font-weight: 600; padding: 5px 10px; }
+.estado-aviso { background: var(--color-aviso); color: var(--color-texto); }
+.estado-exito { background: rgba(var(--color-exito-rgb), .12); color: var(--color-exito); }
+/* Sobre la fila elegida (fondo azul) la píldora necesita fondo sólido para conservar el contraste */
+.list-group-item.active .estado { background: var(--color-tarjeta); }
+.estado-neutro { background: var(--color-linea); color: var(--color-texto); }
+.estado-peligro { background: #F8D7DA; color: #842029; }
+
+/* Contenedores por pantalla (760–1100 px) */
+.contenedor-angosto { max-width: 760px; }
+.contenedor-medio { max-width: 960px; }
+.contenedor-ancho { max-width: 1100px; }
+
+/* Examen (primero celular, 390×844) */
+.barra-examen { background: var(--color-primario); color: #fff; border-top: 1px solid rgba(255, 255, 255, .25); }
+.barra-examen .reloj { font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.barra-examen .reloj.poco-tiempo { color: var(--color-aviso); } /* últimos 5 min; el aviso también se anuncia por texto */
+/* Títulos que reciben el foco por código para lectores de pantalla: no son controles, no llevan anillo */
+.examen-enunciado:focus, h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { outline: none; }
+.progress { --bs-progress-height: 8px; --bs-progress-bg: var(--color-linea); --bs-progress-bar-bg: var(--color-primario); --bs-progress-border-radius: 4px; }
+.examen-contenedor { max-width: 640px; }
+.examen-enunciado { font-size: 20px; line-height: 1.4; font-weight: 700; }
+.opcion-respuesta { display: flex; flex-direction: row; gap: 12px; align-items: center; padding: 16px; cursor: pointer; font-size: 16px; }
+.opcion-respuesta:has(input:checked) { outline: 2px solid var(--color-primario); }
+.opcion-respuesta:has(input:focus-visible) { box-shadow: var(--anillo-foco); }
+.examen-pie { background: var(--color-tarjeta); box-shadow: 0 -1px 4px rgba(0, 0, 0, .08); }
+/* Calculadora integrada (RF-18): teclas de 48 px para el dedo, números alineados como en una calculadora. */
+.calculadora-teclas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.calculadora-teclas .btn { min-height: 48px; font-size: 18px; font-variant-numeric: tabular-nums; }
+.calculadora-entrada { font-size: 20px; text-align: right; font-variant-numeric: tabular-nums; }
+.calculadora-resultado { min-height: 1.5em; text-align: right; }
+.texto-guardado { color: var(--color-exito); font-size: 14px; }
+
+/* Mientras se presenta el examen no se puede imprimir (RF-35) */
+@media print { .sin-impresion { display: none !important; } }
+
+/* Imagen de pregunta sin deformar */
+.imagen-pregunta { max-width: 100%; height: auto; border-radius: 8px; }
+
+.text-suave { color: var(--color-texto-suave); }
+
+/* Campo trampa anti-bots: fuera de la vista y del orden de tabulación; una persona nunca lo llena */
+.campo-trampa { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }

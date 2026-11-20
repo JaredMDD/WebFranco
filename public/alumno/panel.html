@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mis exámenes · Plataforma de exámenes</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="icon" href="data:,">
+</head>
+<body data-rol="alumno" data-pagina="panel">
+  <main id="contenido" class="container contenedor-medio py-4 py-md-5">
+    <section class="card mb-4" aria-labelledby="t-inscribir">
+      <div class="card-body">
+        <h2 class="titulo-seccion" id="t-inscribir">Inscribirme a un grupo</h2>
+        <p class="text-suave" id="codigo-ayuda">Escribe el código de 6 caracteres que te compartió tu docente.</p>
+        <div class="alert alert-success d-none" role="status" id="aviso-inscribir"></div>
+        <div class="alert alert-danger d-none" role="alert" id="error-inscribir"></div>
+        <form class="row g-3 align-items-end" id="form-inscribir">
+          <div class="col-sm">
+            <label class="form-label" for="codigo">Código del grupo</label>
+            <input class="form-control text-uppercase" id="codigo" name="codigo" type="text" maxlength="12" autocomplete="off" autocapitalize="characters" spellcheck="false" required aria-describedby="codigo-ayuda">
+          </div>
+          <div class="col-sm-auto">
+            <button class="btn btn-primary w-100" type="submit">Inscribirme</button>
+          </div>
+        </form>        <div class="bloque-final">
+          <h3 class="form-label mb-2" id="t-mis-grupos">Mis grupos</h3>
+          <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0" id="lista-grupos" aria-labelledby="t-mis-grupos">
+            <li class="text-suave small">Cargando…</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="t-examenes">
+      <div class="card-body">
+        <h2 class="titulo-seccion" id="t-examenes">Mis exámenes</h2>
+        <div class="table-responsive">
+          <table class="table tabla-apilada">
+            <thead>
+              <tr><th scope="col">Examen</th><th scope="col">Disponibilidad</th><th scope="col">Duración</th><th scope="col">Estado</th></tr>
+            </thead>
+            <!-- La Fase 5 carga aquí los exámenes asignados a tus grupos -->
+            <tbody id="tabla-examenes">
+              <tr><td colspan="4" class="text-suave">Tus exámenes aparecerán aquí cuando tu docente los asigne a uno de tus grupos.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/alumno.js"></script>
+</body>
+</html>

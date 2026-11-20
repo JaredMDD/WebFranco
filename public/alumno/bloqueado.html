@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Examen bloqueado · Plataforma de exámenes</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="icon" href="data:,">
+</head>
+<body data-rol="alumno">
+  <main id="contenido" class="container contenedor-angosto py-4 py-md-5">
+    <p class="text-suave" id="cargando">Cargando…</p>
+    <div class="alert alert-danger d-none" role="alert" id="error"></div>
+    <section class="card d-none" aria-labelledby="t-bloqueado" id="tarjeta">
+      <div class="card-body">
+        <span class="badge rounded-pill estado mb-3" id="pildora"></span>
+        <h1 class="titulo-pantalla" id="t-bloqueado" tabindex="-1"></h1>
+        <p class="text-suave mb-4" id="titulo-examen"></p>
+
+        <dl class="row mb-4">
+          <dt class="col-sm-4">Motivo</dt>
+          <dd class="col-sm-8" id="motivo"></dd>
+          <dt class="col-sm-4 fila-fecha">Fecha y hora</dt>
+          <dd class="col-sm-8 fila-fecha" id="fecha"></dd>
+          <dt class="col-sm-4">Respuestas</dt>
+          <dd class="col-sm-8" id="respuestas"></dd>
+        </dl>
+
+        <div class="bloque-final mb-4">
+          <h2 class="titulo-seccion fs-6 mb-1">¿Qué sigue?</h2>
+          <p class="mb-0" id="que-sigue">Habla con tu docente. Revisará el incidente y, si fue una falla técnica, puede reabrir tu examen.</p>
+        </div>
+        <a class="btn btn-primary" href="/alumno/panel.html">Volver a mis exámenes</a>
+      </div>
+    </section>
+  </main>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/bloqueado.js"></script>
+</body>
+</html>

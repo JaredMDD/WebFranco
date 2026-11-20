@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-11-20T09:07:33.760Z",
+        "reason": "Same as above: lowercase form reported for HTML pages; typeface fixed by disenos_de_interfaz.md"
+      }
+    ]
+  }
+}

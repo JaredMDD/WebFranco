@@ -1,0 +1,377 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-19T06:09:48.475Z",
+  "title": "Design System: Plataforma de exámenes · Tecnológico de Cuautla",
+  "extensions": {
+    "colorMeta": {
+      "azul-institucional": {
+        "role": "primary",
+        "displayName": "Azul Institucional Profundo",
+        "canonical": "#1F3A6E",
+        "tonalRamp": [
+          "#030A1D",
+          "#14233F",
+          "#2A3F66",
+          "#425D8E",
+          "#6380B6",
+          "#8CA5D3",
+          "#B7CBF1",
+          "#DFEFFF"
+        ]
+      },
+      "azul-institucional-hover": {
+        "role": "primary",
+        "displayName": "Azul Hover",
+        "canonical": "#172C54",
+        "tonalRamp": [
+          "#040B19",
+          "#17243A",
+          "#2F405E",
+          "#485E85",
+          "#6981AC",
+          "#91A5CA",
+          "#BACBE9",
+          "#E2EFFF"
+        ]
+      },
+      "azul-institucional-activo": {
+        "role": "primary",
+        "displayName": "Azul Activo",
+        "canonical": "#122343",
+        "tonalRamp": [
+          "#050B17",
+          "#1A2437",
+          "#324059",
+          "#4C5E7F",
+          "#6D81A5",
+          "#94A5C4",
+          "#BDCBE4",
+          "#E4EFFF"
+        ]
+      },
+      "gris-aula": {
+        "role": "neutral",
+        "displayName": "Gris Aula",
+        "canonical": "#F4F6FA",
+        "tonalRamp": [
+          "#0B0B0C",
+          "#232426",
+          "#3F4042",
+          "#5C5E61",
+          "#7E8083",
+          "#A3A4A7",
+          "#C9CACD",
+          "#EDEEF0"
+        ]
+      },
+      "blanco-hoja": {
+        "role": "neutral",
+        "displayName": "Blanco Hoja",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#242424",
+          "#404040",
+          "#5D5D5D",
+          "#808080",
+          "#A4A4A4",
+          "#CACACA",
+          "#EEEEEE"
+        ]
+      },
+      "tinta": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#1A1A1A",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#242424",
+          "#404040",
+          "#5D5D5D",
+          "#808080",
+          "#A4A4A4",
+          "#CACACA",
+          "#EEEEEE"
+        ]
+      },
+      "grafito": {
+        "role": "neutral",
+        "displayName": "Grafito",
+        "canonical": "#4A5160",
+        "tonalRamp": [
+          "#090B10",
+          "#20242C",
+          "#3B404B",
+          "#575E6C",
+          "#79808F",
+          "#9EA5B2",
+          "#C6CBD5",
+          "#EBEEF7"
+        ]
+      },
+      "gris-contorno": {
+        "role": "neutral",
+        "displayName": "Gris Contorno",
+        "canonical": "#8A92A3",
+        "tonalRamp": [
+          "#090B10",
+          "#20242C",
+          "#3B404B",
+          "#575E6C",
+          "#798090",
+          "#9EA5B2",
+          "#C5CBD5",
+          "#EBEEF7"
+        ]
+      },
+      "linea-cuaderno": {
+        "role": "neutral",
+        "displayName": "Línea de Cuaderno",
+        "canonical": "#D5D9E2",
+        "tonalRamp": [
+          "#0A0B0E",
+          "#222428",
+          "#3D4045",
+          "#5A5E65",
+          "#7D8088",
+          "#A2A5AB",
+          "#C8CAD0",
+          "#EDEEF2"
+        ]
+      },
+      "ambar-revision": {
+        "role": "status",
+        "displayName": "Ámbar de Revisión",
+        "canonical": "#F2C14E",
+        "tonalRamp": [
+          "#170700",
+          "#361F00",
+          "#583900",
+          "#7E5600",
+          "#A37900",
+          "#C39F4F",
+          "#E3C78B",
+          "#FFECC0"
+        ]
+      },
+      "verde-guardado": {
+        "role": "status",
+        "displayName": "Verde Guardado",
+        "canonical": "#1E6B3C",
+        "tonalRamp": [
+          "#001003",
+          "#042C14",
+          "#174B2A",
+          "#2C6D42",
+          "#4E9163",
+          "#7EB48C",
+          "#ACD7B7",
+          "#D8F8E0"
+        ]
+      },
+      "rojo-abandono": {
+        "role": "status",
+        "displayName": "Rojo Abandono",
+        "canonical": "#842029",
+        "tonalRamp": [
+          "#1E0002",
+          "#430F12",
+          "#6B2528",
+          "#963C3F",
+          "#BF5E5F",
+          "#DE8A89",
+          "#FBB6B4",
+          "#FFE0DE"
+        ]
+      },
+      "rosa-abandono": {
+        "role": "status",
+        "displayName": "Rosa Abandono",
+        "canonical": "#F8D7DA",
+        "tonalRamp": [
+          "#110809",
+          "#2E2021",
+          "#4D3A3C",
+          "#6F5659",
+          "#94787B",
+          "#B69EA0",
+          "#D8C5C7",
+          "#F9EAEC"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Título de pantalla",
+        "purpose": "Uno por página."
+      },
+      "title": {
+        "displayName": "Título de sección",
+        "purpose": "Encabeza cada tarjeta o grupo."
+      },
+      "question": {
+        "displayName": "Enunciado",
+        "purpose": "La pregunta durante el examen."
+      },
+      "body": {
+        "displayName": "Cuerpo",
+        "purpose": "Texto corrido, reglas y opciones."
+      },
+      "label": {
+        "displayName": "Etiqueta",
+        "purpose": "Etiquetas de campo, encabezados de tabla y botones."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Ayudas, pie, datos y píldoras."
+      }
+    },
+    "shadows": [
+      {
+        "name": "hoja",
+        "value": "0 1px 4px rgba(0, 0, 0, .12)",
+        "purpose": "Toda tarjeta: la única capa de profundidad."
+      },
+      {
+        "name": "pie-examen",
+        "value": "0 -1px 4px rgba(0, 0, 0, .08)",
+        "purpose": "Barra inferior fija del examen."
+      }
+    ],
+    "motion": [
+      {
+        "name": "estado",
+        "value": ".15s ease-in-out",
+        "purpose": "Cambios de color de botones y campos (transición de Bootstrap)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "576px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "992px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "La única acción principal de cada vista.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Comenzar examen</button>",
+      "css": ".ds-btn-primary { font-family: Inter, Arial, sans-serif; background: var(--color-primario, #1F3A6E); color: #fff; border: 1px solid var(--color-primario, #1F3A6E); border-radius: 8px; padding: 12px 20px; min-height: 44px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .15s, border-color .15s; } .ds-btn-primary:hover { background: var(--color-primario-hover, #172C54); border-color: var(--color-primario-hover, #172C54); } .ds-btn-primary:active { background: var(--color-primario-activo, #122343); border-color: var(--color-primario-activo, #122343); } .ds-btn-primary:focus-visible { outline: 0; box-shadow: 0 0 0 .25rem rgba(31, 58, 110, .35); } .ds-btn-primary:disabled { opacity: .65; cursor: not-allowed; }"
+    },
+    {
+      "name": "Botón secundario",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Cancelar, alternativas y acciones de tabla.",
+      "html": "<button class=\"ds-btn-secondary\" type=\"button\">Cancelar</button>",
+      "css": ".ds-btn-secondary { font-family: Inter, Arial, sans-serif; background: #fff; color: var(--color-primario, #1F3A6E); border: 2px solid var(--color-primario, #1F3A6E); border-radius: 8px; padding: 11px 19px; min-height: 44px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .15s, color .15s; } .ds-btn-secondary:hover { background: var(--color-primario, #1F3A6E); color: #fff; } .ds-btn-secondary:active { background: var(--color-primario-activo, #122343); border-color: var(--color-primario-activo, #122343); color: #fff; } .ds-btn-secondary:focus-visible { outline: 0; box-shadow: 0 0 0 .25rem rgba(31, 58, 110, .35); }"
+    },
+    {
+      "name": "Campo con etiqueta",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Etiqueta visible encima, borde gris y foco azul.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Código del grupo</span><input class=\"ds-input\" type=\"text\" value=\"K7PM4Q\"></label>",
+      "css": ".ds-field { font-family: Inter, Arial, sans-serif; display: block; max-width: 320px; } .ds-field-label { display: block; font-size: 14px; font-weight: 600; color: #1A1A1A; margin-bottom: 8px; } .ds-input { font-family: Inter, Arial, sans-serif; box-sizing: border-box; width: 100%; padding: 12px; font-size: 15px; color: #1A1A1A; background: #fff; border: 1px solid var(--color-borde, #8A92A3); border-radius: 8px; transition: border-color .15s, box-shadow .15s; } .ds-input:focus-visible { outline: 0; border-color: var(--color-primario, #1F3A6E); box-shadow: 0 0 0 .25rem rgba(31, 58, 110, .35); }"
+    },
+    {
+      "name": "Hoja (tarjeta)",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Contenedor blanco con sombra suave; nunca anidado.",
+      "html": "<section class=\"ds-card\"><h2 class=\"ds-card-title\">Inscribirme a un grupo</h2><p class=\"ds-card-text\">Captura el código que te compartió tu docente.</p></section>",
+      "css": ".ds-card { font-family: Inter, Arial, sans-serif; background: #fff; border-radius: 12px; padding: 28px; box-shadow: 0 1px 4px rgba(0, 0, 0, .12); max-width: 420px; } .ds-card-title { margin: 0 0 8px; font-size: 20px; font-weight: 700; color: #1A1A1A; } .ds-card-text { margin: 0; font-size: 16px; color: var(--color-texto-suave, #4A5160); }"
+    },
+    {
+      "name": "Etiquetas de estado",
+      "kind": "chip",
+      "refersTo": "status-review",
+      "description": "Píldoras que siempre nombran el estado con texto.",
+      "html": "<div class=\"ds-chips\"><span class=\"ds-chip ds-chip-review\">Bloqueado: en revisión del docente</span><span class=\"ds-chip ds-chip-success\">Calificado: 8.5</span><span class=\"ds-chip ds-chip-neutral\">Aún no disponible</span><span class=\"ds-chip ds-chip-danger\">Abandonado</span></div>",
+      "css": ".ds-chips { display: flex; flex-wrap: wrap; gap: 8px; } .ds-chip { font-family: Inter, Arial, sans-serif; display: inline-block; padding: 5px 10px; border-radius: 50rem; font-size: 13px; font-weight: 600; } .ds-chip-review { background: #F2C14E; color: #1A1A1A; } .ds-chip-success { background: #E4EEE8; color: #1E6B3C; } .ds-chip-neutral { background: #D5D9E2; color: #1A1A1A; } .ds-chip-danger { background: #F8D7DA; color: #842029; }"
+    },
+    {
+      "name": "Encabezado institucional",
+      "kind": "nav",
+      "refersTo": "header",
+      "description": "Logotipo, institución, menú del rol y rol al final.",
+      "html": "<header class=\"ds-header\"><span class=\"ds-logo\">LOGO</span><span class=\"ds-inst\"><strong>Tecnológico de Cuautla</strong><small>TecNM · Plataforma de exámenes</small></span><nav class=\"ds-nav\"><a href=\"#\" class=\"ds-active\">Panel</a><a href=\"#\">En revisión</a><a href=\"#\">Reportes</a></nav><span class=\"ds-rol\">Docente</span></header>",
+      "css": ".ds-header { font-family: Inter, Arial, sans-serif; display: flex; align-items: center; gap: 16px; background: var(--color-primario, #1F3A6E); color: #fff; padding: 12px 24px; } .ds-logo { width: 44px; height: 44px; border: 2px dashed #fff; display: flex; align-items: center; justify-content: center; font-size: 11px; flex: none; } .ds-inst { display: flex; flex-direction: column; line-height: 1.2; } .ds-inst strong { font-size: 18px; } .ds-inst small { font-size: 13px; } .ds-nav { margin-left: auto; display: flex; gap: 20px; } .ds-nav a { color: rgba(255, 255, 255, .85); text-decoration: none; font-size: 16px; } .ds-nav a:hover, .ds-nav a:focus-visible { color: #fff; } .ds-nav a.ds-active { color: #fff; text-decoration: underline; text-underline-offset: 6px; } .ds-rol { font-size: 14px; border-left: 1px solid rgba(255, 255, 255, .3); padding-left: 16px; }"
+    },
+    {
+      "name": "Barra del examen",
+      "kind": "custom",
+      "refersTo": "exam-bar",
+      "description": "Avance y reloj del servidor, fijos arriba; progreso de 8 px.",
+      "html": "<div class=\"ds-exam\"><div class=\"ds-exam-bar\"><span>Pregunta 3 de 10</span><span class=\"ds-exam-clock\" role=\"timer\">38:12</span></div><div class=\"ds-exam-progress\"><div style=\"width:30%\"></div></div></div>",
+      "css": ".ds-exam { font-family: Inter, Arial, sans-serif; max-width: 390px; background: #F4F6FA; padding-bottom: 16px; } .ds-exam-bar { display: flex; justify-content: space-between; align-items: center; background: var(--color-primario, #1F3A6E); color: #fff; padding: 16px; font-size: 16px; } .ds-exam-clock { font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; } .ds-exam-progress { margin: 16px; height: 8px; background: #D5D9E2; border-radius: 4px; overflow: hidden; } .ds-exam-progress > div { height: 8px; background: var(--color-primario, #1F3A6E); border-radius: 4px; }"
+    },
+    {
+      "name": "Opción de respuesta",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "Hoja con radio de 22 px; contorno azul al elegirla.",
+      "html": "<div class=\"ds-options\"><label class=\"ds-option\"><input type=\"radio\" name=\"ds-r\" checked> x² + C</label><label class=\"ds-option\"><input type=\"radio\" name=\"ds-r\"> 2x² + C</label></div>",
+      "css": ".ds-options { font-family: Inter, Arial, sans-serif; display: flex; flex-direction: column; gap: 12px; max-width: 358px; } .ds-option { display: flex; align-items: center; gap: 12px; padding: 16px; background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0, 0, 0, .12); font-size: 16px; cursor: pointer; } .ds-option input { width: 22px; height: 22px; margin: 0; accent-color: var(--color-primario, #1F3A6E); } .ds-option:has(input:checked) { outline: 2px solid var(--color-primario, #1F3A6E); } .ds-option:has(input:focus-visible) { box-shadow: 0 0 0 .25rem rgba(31, 58, 110, .35); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Aula Serena",
+    "overview": "Presentar un examen fuera del plantel genera tensión: el alumno sabe que un cambio de pestaña anula su intento y que el reloj corre en el servidor. La interfaz responde a eso con calma. Durante el examen se aparta: una pregunta a la vez, un reloj siempre visible, un solo botón para avanzar. Nada compite con la pregunta.\r\n\nEl carácter es sobrio e institucional. Un solo azul profundo carga la identidad (encabezado, botones, progreso) sobre un gris muy claro y hojas blancas. Los demás colores existen solo para comunicar estados, y siempre van con texto que los explica. Es serio sin ser frío: tipografía legible, espacios generosos y mensajes que dicen qué pasó y qué sigue.\r\n\nLos controles son firmes y claros. Los botones son sólidos y en negrita, cada campo tiene su etiqueta visible encima y toda área táctil mide al menos 44 px, porque muchos alumnos presentan desde el celular.",
+    "keyCharacteristics": [
+      "Una sola voz de color (el azul institucional); el resto son neutros y estados.",
+      "Primero celular en el examen (390×844); escritorio fluido para docente y administrador.",
+      "Estados siempre con texto, nunca solo color.",
+      "Profundidad mínima: hojas blancas con una sombra suave sobre fondo gris.",
+      "Encabezado y pie institucionales en todas las pantallas."
+    ],
+    "rules": [
+      {
+        "name": "The One Voice Rule",
+        "body": "El azul institucional es el único color de identidad. Ámbar, verde y rojo solo aparecen para comunicar un estado, nunca como decoración.",
+        "section": "colors"
+      },
+      {
+        "name": "The Single Source Rule",
+        "body": "Ningún color se escribe fuera de `:root` en `app.css`. Bootstrap recibe la paleta a través de sus variables (`--bs-primary`, `--bs-btn-*`), así que cambiar a la paleta oficial del TecNM toca un solo archivo.",
+        "section": "colors"
+      },
+      {
+        "name": "The Visible Label Rule",
+        "body": "Todo campo lleva su `<label>` visible encima, en Label 600. Un placeholder nunca reemplaza a la etiqueta.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Sheet Rule",
+        "body": "Nunca hay una tarjeta dentro de otra. Los bloques internos se separan con una línea Línea de Cuaderno y 24 px de aire arriba.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar Azul Institucional (#1F3A6E) para la única acción principal de cada vista.",
+      "Do acompañar todo color de estado con texto que lo explique.",
+      "Do mantener las áreas táctiles en 44 px o más y las casillas del examen en 22 px.",
+      "Do separar los grupos dentro de una tarjeta con una línea de 1 px Línea de Cuaderno y 24 px de aire.",
+      "Do escribir los mensajes de anulación o bloqueo con el motivo y el siguiente paso.",
+      "Do cambiar colores solo en las variables de `:root` de `app.css`."
+    ],
+    "donts": [
+      "Don't anidar tarjetas ni dibujar cajas con borde dentro de una tarjeta.",
+      "Don't usar el azul por defecto de Bootstrap (#0d6efd) en ningún componente.",
+      "Don't poner un botón \"Anterior\" ni navegación dentro del examen.",
+      "Don't deformar el logotipo ni invadir su área de protección.",
+      "Don't usar ámbar, verde o rojo como decoración."
+    ]
+  }
+}

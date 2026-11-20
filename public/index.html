@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acceso · Plataforma de exámenes</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="icon" href="data:,">
+</head>
+<body data-rol="acceso">
+  <main id="contenido" class="container contenedor-medio py-4 py-md-5">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <form class="card h-100" id="form-login" autocomplete="on">
+          <div class="card-body">
+            <h1 class="titulo-pantalla">Iniciar sesión</h1>
+            <p class="text-suave">Alumnos, docentes y administradores.</p>
+            <div class="alert alert-success d-none" role="status" id="aviso-login"></div>
+            <div class="alert alert-danger d-none" role="alert" id="error-login"></div>
+            <div class="mb-3">
+              <label class="form-label" for="login-usuario">Usuario</label>
+              <input class="form-control" id="login-usuario" name="usuario" type="text" autocomplete="username" required>
+            </div>
+            <div class="mb-4">
+              <label class="form-label" for="login-contrasena">Contraseña</label>
+              <input class="form-control" id="login-contrasena" name="contrasena" type="password" autocomplete="current-password" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Entrar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-md-6">
+        <form class="card h-100" id="form-registro" autocomplete="on">
+          <div class="card-body">
+            <h1 class="titulo-pantalla">Crear cuenta de alumno</h1>
+            <p class="text-suave">Solo necesitas usuario y contraseña.</p>
+            <!-- Mensajes posibles: usuario existente, contraseña débil, contraseñas distintas, demasiados intentos -->
+            <div class="alert alert-danger d-none" role="alert" id="error-registro"></div>
+            <div class="mb-3">
+              <label class="form-label" for="reg-usuario">Usuario</label>
+              <input class="form-control" id="reg-usuario" name="usuario" type="text" autocomplete="username" minlength="3" maxlength="50" required aria-describedby="reg-usuario-ayuda">
+              <div class="form-text" id="reg-usuario-ayuda">De 3 a 50 caracteres: letras, números, punto o guion bajo. Se guarda en minúsculas.</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="reg-contrasena">Contraseña</label>
+              <input class="form-control" id="reg-contrasena" name="contrasena" type="password" autocomplete="new-password" minlength="8" required aria-describedby="reg-contrasena-ayuda">
+              <div class="form-text" id="reg-contrasena-ayuda">Mínimo 8 caracteres, con letras y números.</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="reg-confirmar">Confirmar contraseña</label>
+              <input class="form-control" id="reg-confirmar" name="confirmar" type="password" autocomplete="new-password" minlength="8" required>
+            </div>
+            <!-- Anti-bots (RNF-04): campo trampa invisible + límite de intentos en el servidor -->
+            <div class="campo-trampa" aria-hidden="true">
+              <label for="reg-sitio">Sitio web</label>
+              <input id="reg-sitio" name="sitio_web" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <button class="btn btn-primary mt-2" type="submit">Registrarme</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/acceso.js"></script>
+</body>
+</html>
