@@ -51,4 +51,4 @@ Lo que pide `Req.md` §10 como entregable, con su estado actual:
 | Manual de usuario (alumno, docente, administrador) | [x] — 21 páginas, 15 capturas reales con datos de ejemplo (20 nov); faltan los logotipos de la portada | `docs/Manual_de_Usuario.docx` |
 | Resultados de pruebas, incluida la de carga | [~] — 11 páginas (20 nov): resumen, entorno, 47 pruebas automáticas, casos de uso, seguridad, tolerancia, tres escenarios de carga, navegador, pendientes con formato de registro y hallazgos. Falta: tabla de tiempos de la corrida aprobada en Tailscale y resultados de celulares | `docs/Resultados_de_Pruebas.docx` |
 | `README.md` con instalación local y despliegue | [x] (20 nov) | `README.md` |
-| Presentación y plan de contingencia local | [ ] | por crear |
+| Presentación y plan de contingencia local | [~] — 16 diapositivas con notas del orador y plan de contingencia en la diapositiva de demostración (20 nov). Faltan carrera, asignatura, fecha y dirección de la plataforma, y ensayar la demostración | [Presentación (claude.ai, privada)](https://claude.ai/artifact/C1h6Z1w1Rf4mUxcX3TN5Ro) |

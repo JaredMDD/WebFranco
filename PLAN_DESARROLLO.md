@@ -307,6 +307,8 @@ Pantallas estáticas con datos de ejemplo, que luego se conectan a la API. **Ref
 
 Formato: `AAAA-MM-DD · Fase · descripción · (RF/CU) · archivos`. Lo más reciente arriba.
 
+- **2026-11-20** · Fase 10 · Presentación de 16 diapositivas (problema, estado del arte, objetivo, roles, flujo, antiplagio, pantallas, arquitectura, seguridad, pruebas, despliegue, metodología, demostración con plan de contingencia y cierre), con notas del orador y capturas reales. Publicada como artifact privado en claude.ai; se descarga como PowerPoint o PDF. · `PLAN_COMPLEMENTARIO.md`
+
 - **2026-11-20** · Fase 10 · `README.md` (qué es, instalación local, pruebas, despliegue, estructura y documentos). En `CasosD_Uso.md`: avance real frente al Gantt planeado (§1.1) y descripción de la metodología de desarrollo (§1.2), que pide `Req.md` §10. · `README.md`, `CasosD_Uso.md`, `PLAN_COMPLEMENTARIO.md`
 
 - **2026-11-20** · Fase 10 · Primer commit del proyecto (`17ee9ae`, 132 archivos; sin `.env`, `node_modules`, imágenes subidas ni registros). Documento de resultados de pruebas en Word (11 páginas); la tabla de casos de uso se toma de este plan al generarlo. Falta la tabla de tiempos de la corrida aprobada en Tailscale y las pruebas en celulares. Se marca como recortada la cuenta de Oracle (Fase 0). · `docs/Resultados_de_Pruebas.docx`, `PLAN_COMPLEMENTARIO.md`
