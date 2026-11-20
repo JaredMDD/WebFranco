@@ -38,7 +38,14 @@ CREATE DATABASE webfranco OWNER webfranco;
 
 ## 4. Copiar la aplicación y configurarla
 
-1. Copia la carpeta del proyecto a la PC, por ejemplo `C:\ProyectoExamen\WebFranco`, **sin** `node_modules`, `.env` ni `server\uploads`.
+1. Descarga el proyecto con git (instálalo desde <https://git-scm.com> si no lo tienes):
+   ```powershell
+   git clone https://github.com/JaredMDD/WebFranco.git C:\ProyectoExamen\WebFranco
+   cd C:\ProyectoExamen\WebFranco
+   ```
+   El repositorio no trae `.env`, `node_modules` ni `server\uploads`: se crean aquí.
+
+   **Si ya tenías la app en una carpeta copiada a mano** (con exámenes reales): detén la app, clona en una carpeta nueva, copia a ella tu `.env` y tu carpeta `server\uploads` (las imágenes de las preguntas), y sigue desde el punto 2 sin crear el `.env` de nuevo. La base de datos no se toca. Si ya registraste la tarea `WebFranco` del paso 6 con la carpeta anterior, vuelve a registrarla con la nueva (`Unregister-ScheduledTask 'WebFranco' -Confirm:$false` y repite el paso 6).
 2. En PowerShell, dentro de esa carpeta:
    ```powershell
    npm ci --omit=dev
@@ -156,7 +163,7 @@ Las imágenes: descomprime `imagenes-<fecha>.zip` dentro de `server\uploads`.
 **Actualizar la aplicación.** **Nunca durante una ventana de examen:** el reinicio corta las conexiones y, si tarda más de 20 s, los alumnos quedan como abandonados.
 
 1. Haz un respaldo a mano (paso 8).
-2. Copia los archivos nuevos encima de los anteriores, sin tocar `.env` ni `server\uploads`.
+2. Descarga los cambios: `git pull` (no toca `.env` ni `server\uploads`, que git ignora).
 3. `npm ci --omit=dev` y `npm run db:migrar` (se puede repetir; no borra datos).
 4. Reinicia la app (tabla de arriba).
 
