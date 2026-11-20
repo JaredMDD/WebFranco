@@ -32,6 +32,47 @@ Se asume trabajo todos los días, incluido el fin de semana (21 y 22). Si descan
 - **Si falta tiempo**, recorta en este orden: estadísticas avanzadas, exportación a PDF (deja Excel), excepción de herramientas externas (RF-18) y bloqueo de copiar/pegar (RF-35).
 - La **prueba de carga** va después del despliegue (11) porque debe hacerse en el servidor real.
 
+### 1.1 Avance real (actualizado al 20 de noviembre)
+
+El diagrama de arriba es la línea base. Las fechas reales salen del changelog de [`PLAN_DESARROLLO.md`](PLAN_DESARROLLO.md) y del historial de git.
+
+| # | Actividad | Planeado | Real | Estado |
+|---|---|---|---|---|
+| 1 | Cierre de requisitos | 18–19 nov | 18 nov | Terminado. Quedan 4 puntos por confirmar con el cliente (`PLAN_DESARROLLO.md` §7). |
+| 2 | Cuenta Oracle y máquina virtual | 18–19 nov | 19 nov | **Recortado:** Oracle exige tarjeta de crédito. Se reemplazó por una PC con Windows publicada con Tailscale Funnel (tarea 11). |
+| 3 | Casos de uso y modelo de datos | 19–20 nov | 18 nov | Terminado. El modelo se actualizó en las fases 4, 5 y 7. |
+| 4 | Maquetas de pantallas | 20–21 nov | 18 nov | Terminado, con sistema de diseño en `DESIGN.md`. |
+| 5 | Registro, sesión, roles y docentes | 21–22 nov | 19 nov | Terminado. |
+| 6 | Materias, grupos y código | 22–23 nov | 19 nov | Terminado. |
+| 7 | Creación de exámenes | 23–24 nov | 19 nov | Terminado. |
+| 8 | Presentación del examen | 23–25 nov | 19 nov | Terminado. |
+| 9 | Seguridad y antiplagio | 24–25 nov | 19 nov | Terminado. |
+| 10 | Calificación, revisión y reportes | 25–26 nov | 19 nov | Terminado. La calculadora integrada (RF-18) se completó el 20 nov. |
+| 11 | Despliegue | 24–25 nov | 19–20 nov | Publicado con Tailscale Funnel. Falta la comprobación final en la PC servidor (arranque automático y respaldos). |
+| 12 | Pruebas y prueba de carga | 25–26 nov | 19–20 nov | Carga de 200 alumnos aprobada en el servidor real. Faltan las pruebas en celulares reales. |
+| 13 | Documentación y presentación | 26–27 nov | 19 nov – | En curso: reporte de primer avance, manual de usuario, resultados de pruebas y README terminados; falta la presentación. |
+
+**Por qué se adelantó:** las fases 2 a 7 se terminaron el 19 de noviembre, cinco a siete días antes de lo planeado. El margen se usó para el cambio de despliegue (Oracle → Cloudflare → Tailscale), que no estaba previsto, y para documentar.
+
+### 1.2 Metodología de desarrollo
+
+Se usó un modelo **iterativo e incremental**: el sistema se dividió en fases (0 a 10), y cada fase entrega una parte que funciona de punta a punta (base de datos, API y pantallas) y se puede probar sola. Es un proyecto individual, así que no se usaron las reuniones de un marco ágil como Scrum, pero sí sus prácticas centrales: entregas cortas, prioridades explícitas y pruebas continuas.
+
+**Prioridades.** Cada requerimiento de `Req.md` tiene prioridad *Imprescindible*, *Importante* o *Deseable*. Se definió de antemano qué recortar si faltaba tiempo (`PLAN_DESARROLLO.md` §5) y qué no se recorta nunca: la presentación del examen y la seguridad.
+
+**Ciclo de cada fase:**
+1. Tomar los requerimientos y casos de uso de la fase (tabla de trazabilidad, `PLAN_DESARROLLO.md` §8).
+2. Implementar la API, la lógica del servidor y las pantallas, partiendo de las maquetas de la Fase 1 y del sistema de diseño.
+3. Escribir pruebas de integración automáticas que levantan la aplicación real contra PostgreSQL (`npm test`).
+4. Recorrer las pantallas en Chrome, en computadora (1280 px) y en celular (390 px), sin errores de consola ni contenido desbordado, y pasar el detector de diseño.
+5. Marcar las tareas como terminadas y registrar el cambio en el changelog, con fecha, requerimientos y archivos.
+
+**Definición de terminado:** una tarea se cierra solo cuando su prueba pasa y el recorrido en navegador se hizo. Si algo no se pudo comprobar, queda anotado como pendiente en el plan.
+
+**Control de cambios y riesgos.** `PLAN_DESARROLLO.md` es la referencia única de avance: casillas por tarea, tabla de riesgos y changelog. El código se versiona con git desde el 20 de noviembre. Los riesgos se revisan al cerrar cada fase; el ejemplo principal fue el despliegue: cuando Oracle pidió tarjeta, se pasó a un túnel desde una PC, y cuando la prueba de carga mostró el límite del túnel rápido de Cloudflare, se cambió a Tailscale Funnel.
+
+**Herramientas:** Node.js 24 con Express, PostgreSQL 18, Socket.IO, Bootstrap 5, el ejecutor de pruebas de Node (`node --test`), Puppeteer para los recorridos en Chrome, git e IntelliJ IDEA.
+
 ---
 
 ## 2. Actores

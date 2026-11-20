@@ -45,10 +45,10 @@ Lo que pide `Req.md` §10 como entregable, con su estado actual:
 | Requerimientos y casos de uso | [x] | `Req.md`, `CasosD_Uso.md` |
 | Modelo de datos | [x] — revisar que refleje las columnas agregadas en las fases 4, 5 y 7 | `modelo_de_datos.md` |
 | Diseño de interfaz y sistema de diseño | [x] | `disenos_de_interfaz.md`, `DESIGN.md` |
-| Diagrama de Gantt | [x] — actualizar con las fechas reales (fases 2 a 7 terminaron el 19 nov) | `CasosD_Uso.md` §1 |
-| Descripción de la metodología de desarrollo | [ ] | por crear (puede ir en el reporte) |
+| Diagrama de Gantt | [x] — línea base más tabla planeado vs. real (20 nov) | `CasosD_Uso.md` §1 y §1.1 |
+| Descripción de la metodología de desarrollo | [x] — iterativa e incremental por fases, ciclo de cada fase y definición de terminado (20 nov) | `CasosD_Uso.md` §1.2 |
 | Guía de despliegue | [~] — reescrita para Windows + Tailscale Funnel (20 nov); falta completar su comprobación final en la PC del compañero | `DESPLIEGUE.md`, `deploy/` |
 | Manual de usuario (alumno, docente, administrador) | [x] — 21 páginas, 15 capturas reales con datos de ejemplo (20 nov); faltan los logotipos de la portada | `docs/Manual_de_Usuario.docx` |
 | Resultados de pruebas, incluida la de carga | [~] — 11 páginas (20 nov): resumen, entorno, 47 pruebas automáticas, casos de uso, seguridad, tolerancia, tres escenarios de carga, navegador, pendientes con formato de registro y hallazgos. Falta: tabla de tiempos de la corrida aprobada en Tailscale y resultados de celulares | `docs/Resultados_de_Pruebas.docx` |
-| `README.md` con instalación local y despliegue | [ ] | por crear |
+| `README.md` con instalación local y despliegue | [x] (20 nov) | `README.md` |
 | Presentación y plan de contingencia local | [ ] | por crear |
