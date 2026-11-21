@@ -6,7 +6,8 @@
   <title>Panel del administrador · Plataforma de exámenes</title>
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/app.css">
-  <link rel="icon" href="data:,">
+  <link rel="icon" type="image/png" href="/img/icono.png">
+  <link rel="apple-touch-icon" href="/img/icono.png">
 </head>
 <body data-rol="admin" data-pagina="panel">
   <main id="contenido" class="container contenedor-ancho py-4 py-md-5">
@@ -23,41 +24,54 @@
     </section>
 
     <div class="row g-4 mb-4">
-      <div class="col-lg-4">
+      <div class="col-md-6">
         <section class="card h-100" aria-labelledby="t-crear">
           <div class="card-body">
-            <div class="bloque">
-              <h2 class="titulo-seccion" id="t-crear">Crear cuenta de docente</h2>
+            <div>
+              <h2 class="titulo-seccion" id="t-crear">Crear cuenta</h2>
               <form id="form-docente">
                 <div class="alert alert-danger d-none" role="alert" id="error-docente"></div>
+                <label class="form-label" for="doc-rol">Tipo de cuenta</label>
+                <select class="form-select mb-3" id="doc-rol" name="rol">
+                  <option value="DOCENTE">Docente</option>
+                  <option value="ADMIN">Administrador</option>
+                </select>
                 <label class="form-label" for="doc-usuario">Usuario</label>
-                <input class="form-control mb-2" id="doc-usuario" name="usuario" type="text" minlength="3" maxlength="50" autocomplete="off" required>
-                <p class="small text-suave">Se genera una contraseña inicial que deberás entregar al docente.</p>
-                <button class="btn btn-primary" type="submit">Crear docente</button>
+                <input class="form-control mb-3" id="doc-usuario" name="usuario" type="text" minlength="3" maxlength="50" autocomplete="off" required>
+                <label class="form-label" for="doc-correo">Correo</label>
+                <input class="form-control mb-2" id="doc-correo" name="correo" type="email" maxlength="254" autocomplete="off" required>
+                <p class="small text-suave">Se genera una contraseña inicial y se envía a este correo.</p>
+                <button class="btn btn-primary" type="submit">Crear cuenta</button>
               </form>
             </div>
-            <div class="bloque">
+          </div>
+        </section>
+      </div>
+      <div class="col-md-6">
+        <section class="card h-100" aria-labelledby="t-restablecer">
+          <div class="card-body">
+            <div>
               <h2 class="titulo-seccion" id="t-restablecer">Restablecer contraseña</h2>
-              <form id="form-restablecer" aria-labelledby="t-restablecer">
+              <form id="form-restablecer">
                 <div class="alert alert-danger d-none" role="alert" id="error-restablecer"></div>
                 <label class="form-label" for="res-usuario">Usuario del docente o alumno</label>
                 <input class="form-control mb-2" id="res-usuario" name="usuario" type="text" maxlength="50" autocomplete="off" required>
-                <p class="small text-suave">La contraseña anterior deja de funcionar y se cierran sus sesiones.</p>
+                <p class="small text-suave">La contraseña anterior deja de funcionar y se cierran sus sesiones. Al docente con correo se le envía la nueva; la de un alumno se muestra aquí.</p>
                 <button class="btn btn-outline-primary" type="submit">Restablecer</button>
               </form>
             </div>
           </div>
         </section>
       </div>
-      <div class="col-lg-8">
-        <section class="card h-100" aria-labelledby="t-docentes">
+      <div class="col-12">
+        <section class="card" aria-labelledby="t-docentes">
           <div class="card-body">
-            <h2 class="titulo-seccion" id="t-docentes">Docentes</h2>
+            <h2 class="titulo-seccion" id="t-docentes">Docentes y administradores</h2>
             <div class="alert alert-danger d-none" role="alert" id="error-docentes"></div>
             <div class="table-responsive">
               <table class="table tabla-apilada">
-                <thead><tr><th scope="col">Usuario</th><th scope="col">Alta</th><th scope="col">Estado</th><th scope="col">Acciones</th></tr></thead>
-                <tbody id="tabla-docentes"><tr><td colspan="4" class="text-suave">Cargando…</td></tr></tbody>
+                <thead><tr><th scope="col">Usuario</th><th scope="col">Tipo</th><th scope="col">Correo</th><th scope="col">Estado</th><th scope="col">Acciones</th></tr></thead>
+                <tbody id="tabla-docentes"><tr><td colspan="5" class="text-suave">Cargando…</td></tr></tbody>
               </table>
             </div>
           </div>
@@ -85,11 +99,13 @@
         <div class="modal-body p-4">
           <h2 class="titulo-seccion" id="t-credencial">Contraseña generada</h2>
           <p id="credencial-texto"></p>
-          <dl class="row mb-3">
-            <dt class="col-4">Usuario</dt><dd class="col-8"><code class="fs-6" id="credencial-usuario"></code></dd>
-            <dt class="col-4">Contraseña</dt><dd class="col-8"><code class="fs-6" id="credencial-contrasena"></code></dd>
-          </dl>
-          <p class="small text-suave">Cópiala ahora: no se volverá a mostrar.</p>
+          <div id="credencial-datos">
+            <dl class="row mb-3">
+              <dt class="col-4">Usuario</dt><dd class="col-8"><code class="fs-6" id="credencial-usuario"></code></dd>
+              <dt class="col-4">Contraseña</dt><dd class="col-8"><code class="fs-6" id="credencial-contrasena"></code></dd>
+            </dl>
+            <p class="small text-suave">Cópiala ahora: no se volverá a mostrar.</p>
+          </div>
           <div class="d-flex justify-content-end"><button class="btn btn-primary" type="button" data-bs-dismiss="modal">Listo</button></div>
         </div>
       </div>

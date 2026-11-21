@@ -14,11 +14,15 @@
         ['panel', 'Panel', '/docente/panel.html'],
         ['revision', 'En revisión', '/docente/revision.html'],
         ['reportes', 'Reportes', '/docente/reportes.html'],
+        ['cuenta', 'Mi cuenta', '/docente/cuenta.html'],
       ],
     },
     admin: {
       nombre: 'Administrador',
-      menu: [['panel', 'Panel', '/admin/panel.html']],
+      menu: [
+        ['panel', 'Panel', '/admin/panel.html'],
+        ['cuenta', 'Mi cuenta', '/admin/cuenta.html'],
+      ],
     },
   };
 
@@ -40,7 +44,7 @@
     <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 btn btn-light btn-sm" href="#contenido">Saltar al contenido</a>
     <div class="container-fluid px-3 px-md-4">
       <a class="navbar-brand d-flex align-items-center gap-3 text-white me-auto" href="/">
-        <span class="logo-placeholder" aria-hidden="true">LOGO</span>
+        <img class="logo-oficial" src="/img/emblema.png" alt="" width="30" height="44">
         <span>
           <span class="nombre-inst d-block">Tecnológico de Cuautla</span>
           <span class="sub-inst d-block">TecNM · Plataforma de exámenes</span>

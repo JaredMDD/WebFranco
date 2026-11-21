@@ -54,13 +54,7 @@ main { flex: 1 0 auto; }
 
 /* Encabezado institucional (RNF-20) */
 .encabezado { background: var(--color-primario); }
-.logo-placeholder {
-  width: 44px; height: 44px; flex: none;
-  border: 2px dashed #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; color: #fff;
-}
-/* Al tener el logo oficial: <img class="logo-oficial" src="/img/logo.png" alt="TecNM">, sin deformar (RNF-21) */
+/* Emblema TecNM (public/img/emblema.png, recortado de logo.png), sin deformar (RNF-21) */
 .logo-oficial { height: 44px; width: auto; object-fit: contain; }
 .encabezado .nombre-inst { font-weight: 700; font-size: 18px; line-height: 1.2; }
 .encabezado .sub-inst { font-size: 13px; }

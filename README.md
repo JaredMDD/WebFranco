@@ -22,7 +22,7 @@ Requisitos: **Node.js 24.2 o mayor** y **PostgreSQL** (probado con la 18).
    npm ci
    Copy-Item .env.example .env      # en Linux o macOS: cp .env.example .env
    ```
-   En `.env`, pon tu clave en `DATABASE_URL`. Deja `NODE_ENV` y `TRUST_PROXY` comentados: en local se entra por `http://`, y con `NODE_ENV=production` la cookie de sesión solo viaja por HTTPS.
+   En `.env`, pon tu clave en `DATABASE_URL`. Deja `NODE_ENV` y `TRUST_PROXY` comentados: en local se entra por `http://`, y con `NODE_ENV=production` la cookie de sesión solo viaja por HTTPS. `URL_PUBLICA` y `SMTP_*` (envío de contraseñas y recuperación por correo) son opcionales en local: sin ellas, las contraseñas se muestran en pantalla.
 3. Crea las tablas y el administrador inicial:
    ```powershell
    npm run db:migrar

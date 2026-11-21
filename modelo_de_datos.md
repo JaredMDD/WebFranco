@@ -36,8 +36,11 @@ erDiagram
 | nombre_usuario | varchar(50) | Único |
 | contrasena_hash | varchar(255) | Hash (por ejemplo, BCrypt); nunca la contraseña |
 | rol | varchar(10) | `ADMIN`, `DOCENTE`, `ALUMNO` |
-| activo | boolean | El administrador desactiva docentes |
+| activo | boolean | El administrador desactiva docentes y administradores |
 | creado_en | timestamp | |
+| correo | varchar(254) | Solo docentes y administradores; único sin distinguir mayúsculas. Recibe la contraseña inicial y el enlace de recuperación |
+| recuperacion_hash | varchar(64) | Hash SHA-256 del enlace de "Olvidé mi contraseña"; se borra al usarlo |
+| recuperacion_expira | timestamp | Vence a los 60 min |
 
 ### materia
 | Campo | Tipo | Notas |
@@ -190,11 +193,11 @@ Restricción única: (`intento_id`, `pregunta_id`); el autoguardado actualiza la
 - **Aleatorización sin banco:** `semilla_aleatoria` permite barajar preguntas y opciones por alumno de forma reproducible.
 - **Control de acceso:** toda consulta de exámenes, intentos y reportes filtra por `docente_id` del examen.
 - **Retención de evidencias:** `incidente.expira_en` y un proceso programado de borrado; las calificaciones (`intento`, `respuesta`) no se borran.
-- **Privacidad:** solo se guarda usuario, contraseña con hash e IP como evidencia.
+- **Privacidad:** solo se guarda usuario, contraseña con hash e IP como evidencia; el correo, solo de docentes y administradores.
 
 ## 4. Índices recomendados
 
-- `usuario(nombre_usuario)` único.
+- `usuario(nombre_usuario)` único y `usuario(lower(correo))` único.
 - `grupo(codigo_inscripcion)` único.
 - `intento(examen_id, alumno_id)` único y `intento(estado)`.
 - `respuesta(intento_id, pregunta_id)` único.

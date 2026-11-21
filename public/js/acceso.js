@@ -37,3 +37,9 @@ formRegistro.addEventListener('submit', (e) => {
     }
   });
 });
+
+// Vuelve de "Recuperar contraseña"
+if (new URLSearchParams(location.search).has('recuperada')) {
+  mostrar(avisoLogin, 'Contraseña actualizada. Inicia sesión con la nueva.');
+  history.replaceState(null, '', '/');
+}

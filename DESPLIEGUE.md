@@ -58,7 +58,15 @@ CREATE DATABASE webfranco OWNER webfranco;
    DATABASE_URL=postgres://webfranco:<CLAVE_BD>@localhost:5432/webfranco
    NODE_ENV=production
    TRUST_PROXY=1
+   URL_PUBLICA=https://<equipo>.<red>.ts.net
+   SMTP_HOST=smtp.gmail.com
+   SMTP_PORT=465
+   SMTP_USER=<cuenta>@gmail.com
+   SMTP_PASS=<contraseña de aplicación de 16 letras>
+   SMTP_FROM=Plataforma de exámenes <<cuenta>@gmail.com>
    ```
+   - `URL_PUBLICA`: la dirección del paso 5. Va en los enlaces de "¿Olvidaste tu contraseña?"; sin ella no se envían.
+   - `SMTP_*`: la cuenta que envía las contraseñas iniciales y los enlaces de recuperación. Con Gmail: activa la verificación en dos pasos en esa cuenta y crea una **contraseña de aplicación** en <https://myaccount.google.com/apppasswords>; esa va en `SMTP_PASS`, no la contraseña normal. Conviene una cuenta solo para la plataforma. Sin `SMTP_HOST` la app funciona igual, pero el administrador ve la contraseña en pantalla y la entrega a mano, y "¿Olvidaste tu contraseña?" no envía nada.
    - `NODE_ENV=production`: la cookie de sesión solo viaja por HTTPS. Por eso, **en esa PC el inicio de sesión ya no funciona en `http://localhost:3000`**; entra siempre por la dirección `https://...ts.net`.
    - `TRUST_PROXY=1`: toma la IP del alumno que informa Tailscale. Se comprueba en el paso 9.
 4. Crea las tablas y el administrador:
@@ -66,6 +74,7 @@ CREATE DATABASE webfranco OWNER webfranco;
    npm run db:migrar
    ```
    **Guarda la contraseña del administrador que se imprime**: no se vuelve a mostrar. Si se pierde: `npm run db:migrar -- --nueva-contrasena-admin`.
+5. Entra como administrador, abre **Mi cuenta**, cámbiale la contraseña y registra tu correo: sin correo no podrás usar "¿Olvidaste tu contraseña?".
 
 ## 5. Publicar con Tailscale Funnel
 
@@ -144,7 +153,8 @@ Las imágenes: descomprime `imagenes-<fecha>.zip` dentro de `server\uploads`.
 ## 9. Comprobación final
 
 - [ ] `https://<equipo>.<red>.ts.net/api/salud` responde `"db":true` desde **otro** dispositivo (celular con datos móviles, no el Wi-Fi de la casa).
-- [ ] El administrador entra y crea un docente. El docente crea una materia, un grupo y un examen corto.
+- [ ] El administrador entra y crea un docente con un correo real: **la contraseña inicial llega a ese correo** (revisa también spam). El docente crea una materia, un grupo y un examen corto.
+- [ ] En el acceso, "¿Olvidaste tu contraseña?" con el usuario del docente manda un enlace que abre la dirección `https://...ts.net` y permite elegir una contraseña nueva.
 - [ ] Un alumno se registra, se inscribe y presenta el examen **desde un celular con datos móviles**, sin que aparezca el aviso "Se perdió la conexión".
 - [ ] En "En revisión", la IP de un incidente de prueba es la del celular, no `127.0.0.1` ni una `100.x.x.x` de Tailscale. Si sale una de esas, avisar: hay que ajustar cómo se lee la IP.
 - [ ] Reinicia la PC **sin iniciar sesión en Windows**: a los 1–2 minutos, la dirección pública vuelve a responder.
@@ -177,6 +187,7 @@ Las imágenes: descomprime `imagenes-<fecha>.zip` dentro de `server\uploads`.
 | `/api/salud` dice `"db":false` | PostgreSQL detenido: `Get-Service postgresql*`; **(administrador)** `Start-Service postgresql-x64-18`. |
 | Tras reiniciar Windows no vuelve | Falta **Run unattended** en Tailscale (paso 5) o la tarea `WebFranco` (paso 6): `Get-ScheduledTask WebFranco`. |
 | El alumno ve "Se perdió la conexión" seguido | Internet inestable en la PC servidor o en el celular. Revisa la conexión de la PC; si es Wi-Fi, usa cable. |
+| No llegan los correos | Lee `logs\servidor.log` ("Correo no enviado: …"). Con Gmail, `SMTP_PASS` debe ser una contraseña de aplicación. Revisa spam. Mientras tanto, el panel del administrador muestra la contraseña en pantalla. |
 | El respaldo no aparece | Ejecuta el comando manual del paso 8 y lee el error; revisa que `DATABASE_URL` en `.env` sea correcto. |
 
 > **Límites de este despliegue:** todo depende de una sola PC y de su internet doméstico. Si se apaga o pierde conexión a mitad de examen, los alumnos quedan como abandonados a los 20 s y el docente puede reabrirles el examen. Tailscale limita el ancho de banda de Funnel sin publicar una cifra; la prueba de carga de 200 alumnos pasó, pero exámenes con muchas imágenes conviene probarlos antes. Como contingencia para la presentación, el sistema corre en local con `npm start`.

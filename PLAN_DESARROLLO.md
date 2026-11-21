@@ -79,11 +79,12 @@ WebFranco/
 ├── public/                 ← lo único servido al navegador
 │   ├── css/  (bootstrap.min.css + app.css)
 │   ├── js/   (bootstrap.bundle.min.js + api.js, layout.js, una por pantalla)
-│   ├── img/  (marcador de logotipo)
+│   ├── img/  logo.png (original TecNM), emblema.png (encabezado), icono.png (pestaña e inicio en celular)
 │   ├── index.html          ← acceso y registro
+│   ├── recuperar.html      ← olvidé mi contraseña (pedir enlace y elegir una nueva)
 │   ├── alumno/   panel.html, instrucciones.html, examen.html, bloqueado.html, resultados.html
-│   ├── docente/  panel.html, examen-editar.html, revision.html, calificar.html, reportes.html
-│   └── admin/    panel.html
+│   ├── docente/  panel.html, examen-editar.html, revision.html, calificar.html, reportes.html, cuenta.html
+│   └── admin/    panel.html, cuenta.html
 └── deploy/                 ← nginx.conf, webfranco.service, backup.sh
 ```
 
@@ -251,6 +252,19 @@ Pantallas estáticas con datos de ejemplo, que luego se conectan a la API. **Ref
   - [ ] Se activa el modo avión 10 s y se quita: aviso de conexión y continúa; más de 20 s: abandonado.
   - [ ] Girar el celular y escribir una respuesta abierta larga con el teclado en pantalla: no debe anular.
 
+### Fase 11 · Cambios del cliente: cuentas, contraseñas y logotipo — 20 nov ✔ (terminada el 20 nov)
+Requerimientos nuevos que pidió el cliente el 20 nov (amplían RF-03 a RF-05; aún no están numerados en `Req.md`).
+- [x] Docentes y administradores cambian su contraseña en **Mi cuenta** (piden la actual; cierra las sesiones de otros equipos y deja abierta la de este).
+- [x] Docentes y administradores registran o cambian su correo en **Mi cuenta** (pide la contraseña actual, para que una sesión robada no pueda desviar la recuperación).
+- [x] Al crear un docente, el correo es obligatorio y la contraseña inicial **se envía a ese correo** (Nodemailer por SMTP, p. ej. Gmail con contraseña de aplicación). Si no hay SMTP configurado o el envío falla, se muestra una vez en pantalla como respaldo.
+- [x] El administrador crea **otros administradores** (mismo formulario, "Tipo de cuenta") y los activa o desactiva; nadie puede desactivarse a sí mismo, así siempre queda uno. La tabla del panel lista docentes y administradores con su correo, que el administrador puede editar.
+- [x] **"¿Olvidaste tu contraseña?"** en el acceso, para docentes y administradores con correo: enlace de un solo uso, válido 60 min, guardado como hash; respuesta idéntica exista o no la cuenta; límite de 10 solicitudes/15 min por IP; el enlace usa `URL_PUBLICA`, nunca el encabezado `Host`. Al usarlo se cierran todas sus sesiones. Los alumnos siguen pidiendo el restablecimiento al administrador.
+- [x] El restablecimiento que hace el administrador manda la nueva contraseña al correo del docente (al alumno se le sigue mostrando en pantalla).
+- [x] Logotipo oficial: `logo.png` pasa a `public/img/`; de él salen el emblema blanco del encabezado y el icono de la pestaña (emblema sobre el azul institucional) en las 15 páginas.
+- [x] Pruebas: 4 casos nuevos en `test/auth.test.js` (alta con correo, otros administradores, Mi cuenta, recuperación de un solo uso). Los correos se capturan en memoria; no se envía nada real.
+- [ ] Probar el envío real con la cuenta de Gmail de la plataforma en el servidor (`DESPLIEGUE.md` §4 y §9) y registrar el correo del administrador y de los docentes existentes, que hoy no tienen.
+- [ ] Actualizar `Req.md`, `CasosD_Uso.md`, el manual de usuario y la presentación con estas funciones.
+
 ### Fase 10 · Documentación y entrega — 26–27 nov
 - Manual de usuario, resultados de pruebas, `README.md`, presentación y reporte de desarrollo: se siguen en [`PLAN_COMPLEMENTARIO.md`](PLAN_COMPLEMENTARIO.md) §3.
 - [ ] ◆ **Entrega 27 nov.**
@@ -285,7 +299,8 @@ Pantallas estáticas con datos de ejemplo, que luego se conectan a la API. **Ref
 - [ ] Umbral de inactividad por defecto (propuesta: 3 min, configurable por examen).
 - [ ] Retención de 7 días desde el incidente o desde el cierre del examen (implementado: desde el incidente).
 - [ ] Alcance del plagio (implementado: solo comportamiento).
-- [ ] Logotipos, colores y tipografía oficiales del TecNM (se usan marcadores).
+- [~] Logotipos, colores y tipografía oficiales del TecNM: el logotipo ya se recibió y está aplicado (Fase 11); colores y tipografía siguen provisionales.
+- [ ] Cuenta de correo desde la que la plataforma envía contraseñas y enlaces de recuperación (propuesta: una cuenta de Gmail solo para la plataforma).
 
 ## 8. Trazabilidad rápida
 
@@ -300,12 +315,15 @@ Pantallas estáticas con datos de ejemplo, que luego se conectan a la API. **Ref
 | 7 | RF-06, 17, 29, 33, 39–45, RNF-08 | CU-05, 12–17, 24 |
 | 8 | RNF-03, 14, 17 | — |
 | 9 | RNF-05, 06, 10, 12, 13 | todos |
+| 11 | RF-03–05 ampliados (cambios del cliente del 20 nov), RNF-04, 06, 08, 21 | CU-01–04 |
 
 ---
 
 ## 9. Changelog
 
 Formato: `AAAA-MM-DD · Fase · descripción · (RF/CU) · archivos`. Lo más reciente arriba.
+
+- **2026-11-20** · Fase 11 · Cambios del cliente. Mi cuenta para docentes y administradores (cambiar contraseña y correo, ambos con la contraseña actual). Alta de cuentas con correo obligatorio y tipo Docente/Administrador; la contraseña inicial y la restablecida se envían por correo con Nodemailer, con respaldo en pantalla si no hay SMTP. "¿Olvidaste tu contraseña?" con enlace de un solo uso de 60 min. API: `POST /api/auth/contrasena`, `/correo`, `/olvide`, `/recuperar`; `/api/admin/docentes` pasa a `/api/admin/cuentas` (GET, POST, PATCH con `activo` o `correo`). Cambio al modelo: `usuario.correo` (único), `recuperacion_hash`, `recuperacion_expira`; se aplican con `npm run db:migrar`. Nuevas variables `URL_PUBLICA` y `SMTP_*` en `.env`. Logotipo oficial en `public/img/` con emblema del encabezado e icono de pestaña generados a partir de él. El panel del administrador pone la tabla de cuentas a todo el ancho. Verificado: `npm test` 50/50 (4 nuevas; la de caída del servidor falló una vez y pasó en tres corridas más); recorrido en Chrome a 1280 y 390 px (acceso con enlace, recuperar con mensaje genérico y con enlace inválido, alta de docente sin SMTP con respaldo en pantalla, tabla de cuentas, Mi cuenta con contraseña errónea y correo guardado) sin errores de consola ni desbordes. Sin probar: envío real por SMTP. (RF-03 a 05 · RNF-04, 06, 08, 21 · CU-01 a 04) · `server/db/schema.sql`, `server/services/correo.js`, `server/routes/auth.js`, `server/routes/admin.js`, `public/index.html`, `public/recuperar.html`, `public/admin/panel.html`, `public/admin/cuenta.html`, `public/docente/cuenta.html`, `public/js/admin.js`, `public/js/cuenta.js`, `public/js/recuperar.js`, `public/js/acceso.js`, `public/js/layout.js`, `public/css/app.css`, `public/img/*`, todas las páginas (icono), `test/auth.test.js`, `.env.example`, `DESPLIEGUE.md`, `modelo_de_datos.md`, `package.json`
 
 - **2026-11-20** · Fase 10 · Presentación de 16 diapositivas (problema, estado del arte, objetivo, roles, flujo, antiplagio, pantallas, arquitectura, seguridad, pruebas, despliegue, metodología, demostración con plan de contingencia y cierre), con notas del orador y capturas reales. Publicada como artifact privado en claude.ai; se descarga como PowerPoint o PDF. · `PLAN_COMPLEMENTARIO.md`
 

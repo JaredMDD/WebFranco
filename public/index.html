@@ -6,7 +6,8 @@
   <title>Acceso · Plataforma de exámenes</title>
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/app.css">
-  <link rel="icon" href="data:,">
+  <link rel="icon" type="image/png" href="/img/icono.png">
+  <link rel="apple-touch-icon" href="/img/icono.png">
 </head>
 <body data-rol="acceso">
   <main id="contenido" class="container contenedor-medio py-4 py-md-5">
@@ -26,7 +27,10 @@
               <label class="form-label" for="login-contrasena">Contraseña</label>
               <input class="form-control" id="login-contrasena" name="contrasena" type="password" autocomplete="current-password" required>
             </div>
-            <button class="btn btn-primary" type="submit">Entrar</button>
+            <div class="d-flex flex-wrap align-items-center gap-3">
+              <button class="btn btn-primary" type="submit">Entrar</button>
+              <a href="/recuperar.html">¿Olvidaste tu contraseña?</a>
+            </div>
           </div>
         </form>
       </div>

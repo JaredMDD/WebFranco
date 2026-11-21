@@ -9,6 +9,12 @@ CREATE TABLE IF NOT EXISTS usuario (
   activo          boolean      NOT NULL DEFAULT true,
   creado_en       timestamptz  NOT NULL DEFAULT now()
 );
+-- Correo de docentes y administradores (contraseña inicial y recuperación). Los alumnos no lo tienen.
+ALTER TABLE usuario ADD COLUMN IF NOT EXISTS correo varchar(254);
+-- Enlace de "olvidé mi contraseña": solo el hash del token, de un solo uso y con vencimiento.
+ALTER TABLE usuario ADD COLUMN IF NOT EXISTS recuperacion_hash varchar(64);
+ALTER TABLE usuario ADD COLUMN IF NOT EXISTS recuperacion_expira timestamptz;
+CREATE UNIQUE INDEX IF NOT EXISTS usuario_correo ON usuario (lower(correo));
 
 CREATE TABLE IF NOT EXISTS sesion (
   id          bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,

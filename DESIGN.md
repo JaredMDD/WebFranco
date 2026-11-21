@@ -68,11 +68,6 @@ typography:
     fontSize: "0.9375rem"
     fontWeight: 600
     lineHeight: 1.5
-  logo-placeholder:
-    fontFamily: "Inter, Arial, sans-serif"
-    fontSize: "0.6875rem"
-    fontWeight: 400
-    lineHeight: 1
 rounded:
   barra: "4px"
   control: "8px"
